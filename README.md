@@ -48,6 +48,12 @@ pnpm dev
 Node 20 LTS, pnpm. The stack is fixed and deliberately small — see
 `docs/BUILD-INSTRUCTIONS-claude-code.md` §1. **Ask before adding a dependency.**
 
+One system tool is needed, and only by the GELDS importer:
+
+```bash
+apt-get install poppler-utils   # or: brew install poppler
+```
+
 ### The checks that gate every commit
 
 ```bash
@@ -81,6 +87,15 @@ folder in the repo and Phase 0 does not ship until it is complete and green.
 **2. Never invent GELDS data.** If the indicator table isn't loaded, fail
 loudly. Do not seed plausible-looking codes. A fabricated standards code on a
 monitoring document is a customer-losing event.
+
+The importer enforces this rather than trusting it: five hard gates, and a
+failure loads nothing at all rather than loading part of a bad parse.
+
+```bash
+pnpm gelds:import            # parse, validate, write the JSON artifact
+pnpm gelds:import --fetch    # download the source PDFs from DECAL first
+pnpm gelds:import --load     # also load, once Supabase is configured
+```
 
 **3. Compliance never blocks enrollment.** DECAL prohibits requiring Form 3231
 or Form 3300 as a condition of enrollment, and a valid appointment card keeps a
@@ -126,6 +141,7 @@ app/(auth)           login, invite acceptance, password reset
 app/(app)            the authenticated product
 components/shared    domain chip, coverage bar, empty states
 lib/gelds            indicator lookup, code parsing, the AGE_BANDS constant
+supabase/gelds       the import pipeline and its committed JSON artifact
 lib/compliance       per-form deadline rules — the only place 30 and 90 appear
 lib/week.ts          week math, single source of truth
 lib/copy.ts          every user-facing string

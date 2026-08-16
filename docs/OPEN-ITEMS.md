@@ -127,8 +127,11 @@ Who writes them, and what does it cost?
 - Does Work Sampling Online offer any import path, or is copy-paste the bridge?
 - Spanish UI at launch or later? Layouts are already built to survive ~30%
   longer strings either way.
-- Confirm the CD subdomain code shape against the full GELDS export for **every**
-  age band. It is verified against the 48–60 month PDF only.
+- ~~Confirm the CD subdomain code shape against the full GELDS export for every
+  age band.~~ **CLOSED.** The T-0.6 import parsed all five DECAL indicator PDFs:
+  657 indicators, every domain × age-band cell populated, all five CD
+  subdomains present in every band. Cross-checked against the 122 codes on
+  DECAL's own sample lesson plans — 122/122 found.
 - Three pilot centers for the Phase 1 exit gate.
 - Domain and trademark clearance for **Early Ed Passport**. `earlyedpassport.com`
   is registered; the name has not been trademark-checked.
