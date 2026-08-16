@@ -1,0 +1,246 @@
+@import 'tailwindcss';
+
+/* ==========================================================================
+   DESIGN TOKENS — Early Ed Passport
+   Source of truth: DESIGN-BRIEF.md §2. Ticket T-0.7.
+
+   NO COMPONENT MAY CONTAIN A HARDCODED HEX VALUE.
+   Enforced by `pnpm lint:tokens` (scripts/check-no-hardcoded-hex.mjs).
+   ========================================================================== */
+
+:root {
+  /* --- 2.1 Neutrals — the warm base -------------------------------------- */
+  /* Backgrounds are never pure white; text is never pure black. */
+  --bg: #fbf9f6;
+  --surface: #ffffff;
+  --surface-sunk: #f4f1ec;
+  --border: #e5e0d8;
+  --border-strong: #cfc8bc;
+  --text: #26221d;
+  --text-muted: #6b645a;
+  --text-faint: #9a9287;
+
+  /* --- 2.2 Brand accent — deep teal --------------------------------------- */
+  /* Chosen to stay distinct from all five GELDS domain colors. */
+  --accent: #1f6f6b;
+  --accent-hover: #175653;
+  --accent-soft: #e4f0ef;
+  --accent-text: #12403e;
+
+  /* --- 2.3 Status — no red for validation, ever --------------------------- */
+  --attention: #b87a2b;
+  --attention-soft: #fcf3e4;
+  --good: #2e7a52;
+  --good-soft: #e7f3ec;
+
+  /* --critical is RESERVED for allergy flags, custody / do-not-release flags,
+     and SafetyBanner. Never for form validation. Never for network errors.
+     Red must mean "a child could be hurt." The scarcity is the safety feature:
+     if red appears for a blank field, teachers stop seeing red for allergies. */
+  --critical: #b3261e;
+  --critical-soft: #fdecea;
+
+  /* --- 2.4 GELDS domain colors ------------------------------------------- */
+  /* TODO(gelds-colors): PLACEHOLDERS. These five values are NOT the real DECAL
+     colors. They must be pulled from the GELDS Quick Guide PDF:
+     https://gelds.decal.ga.gov/pdf/documents/GELDS_Quick_View.pdf
+     Teachers recognize the official colors from their training posters, so
+     inventing our own actively costs us recognition.
+
+     Bernard's open item #2 (DESIGN-BRIEF §9). Blocks final design sign-off.
+     `pnpm lint:release` fails the build if this marker survives to a release
+     tag (BUILD-INSTRUCTIONS T-0.7).
+
+     All five CD subdomains (MA, SC, SS, CR, CP) share the single CD color and
+     are differentiated by label, not hue. */
+  --gelds-pdm: #6b645a; /* TODO(gelds-colors) Physical Development & Motor Skills */
+  --gelds-sed: #6b645a; /* TODO(gelds-colors) Social & Emotional Development */
+  --gelds-apl: #6b645a; /* TODO(gelds-colors) Approaches to Play & Learning */
+  --gelds-cll: #6b645a; /* TODO(gelds-colors) Communication, Language & Literacy */
+  --gelds-cd: #6b645a; /* TODO(gelds-colors) Cognitive Development & General Knowledge */
+
+  /* Uncovered domain chips are grey until an activity covers them. */
+  --gelds-uncovered: #cfc8bc;
+
+  /* --- 2.5 Type ----------------------------------------------------------- */
+  /* One family. No display face, no rounded "friendly" face — those read as
+     childish and print badly. */
+  --font-sans:
+    'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    sans-serif;
+
+  --text-display: 30px;
+  --text-display--line-height: 36px;
+  --text-h1: 24px;
+  --text-h1--line-height: 30px;
+  --text-h2: 19px;
+  --text-h2--line-height: 26px;
+  /* 17px body on mobile is deliberate: read at arm's length, in poor classroom
+     lighting, often by someone over 40. Not 14. Not 16. */
+  --text-body-lg: 17px;
+  --text-body-lg--line-height: 26px;
+  --text-body: 15px;
+  --text-body--line-height: 22px;
+  --text-small: 13px;
+  --text-small--line-height: 18px;
+  --text-code: 12px;
+  --text-code--line-height: 16px;
+
+  /* --- 2.6 Space, radius, elevation --------------------------------------- */
+  /* Space scale: 4, 8, 12, 16, 24, 32, 48, 64. Nothing between. */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-full: 9999px;
+
+  --shadow-card: 0 1px 2px rgb(38 34 29 / 0.06), 0 1px 3px rgb(38 34 29 / 0.04);
+  --shadow-sheet: 0 -4px 24px rgb(38 34 29 / 0.12);
+
+  /* --- 2.7 Touch and motion ----------------------------------------------- */
+  --tap-min: 48px; /* minimum tap target */
+  --tap-primary: 56px; /* primary actions, full-width on mobile */
+  --motion-state: 150ms;
+  --motion-sheet: 250ms;
+  --ease: cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* Map tokens into Tailwind utilities so components never touch raw values. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-sunk: var(--surface-sunk);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-text-faint: var(--text-faint);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-text: var(--accent-text);
+
+  --color-attention: var(--attention);
+  --color-attention-soft: var(--attention-soft);
+  --color-good: var(--good);
+  --color-good-soft: var(--good-soft);
+  --color-critical: var(--critical);
+  --color-critical-soft: var(--critical-soft);
+
+  --color-gelds-pdm: var(--gelds-pdm);
+  --color-gelds-sed: var(--gelds-sed);
+  --color-gelds-apl: var(--gelds-apl);
+  --color-gelds-cll: var(--gelds-cll);
+  --color-gelds-cd: var(--gelds-cd);
+  --color-gelds-uncovered: var(--gelds-uncovered);
+
+  --font-sans: var(--font-sans);
+
+  --radius-sm: var(--r-sm);
+  --radius-md: var(--r-md);
+  --radius-lg: var(--r-lg);
+  --radius-full: var(--r-full);
+
+  --shadow-card: var(--shadow-card);
+  --shadow-sheet: var(--shadow-sheet);
+
+  --spacing-1: var(--space-1);
+  --spacing-2: var(--space-2);
+  --spacing-3: var(--space-3);
+  --spacing-4: var(--space-4);
+  --spacing-6: var(--space-6);
+  --spacing-8: var(--space-8);
+  --spacing-12: var(--space-12);
+  --spacing-16: var(--space-16);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: var(--text-body-lg);
+    line-height: var(--text-body-lg--line-height);
+    /* Nothing in this product scrolls sideways on a phone. */
+    overflow-x: hidden;
+  }
+
+  /* §6 — full keyboard operation, visible 2px accent focus ring. */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: var(--r-sm);
+  }
+
+  /* §2.7 — respect prefers-reduced-motion. No bounce, no spring, no
+     celebration animations anywhere in the product. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* GELDS codes are always small, muted, and slightly tracked. Never the
+     large text — the plain-English paraphrase is what a teacher reads. */
+  .gelds-code {
+    font-size: var(--text-code);
+    line-height: var(--text-code--line-height);
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+
+  .tap-target {
+    min-height: var(--tap-min);
+    min-width: var(--tap-min);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   PRINT — a first-class deliverable, not an afterthought (DESIGN-BRIEF §5.9).
+   The monitoring copy sits in a binder next to state paperwork. Black on
+   white, no color fills, 11pt minimum.
+   -------------------------------------------------------------------------- */
+@media print {
+  :root {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface-sunk: #ffffff;
+    --text: #000000;
+    --text-muted: #000000;
+  }
+
+  body {
+    background: #fff;
+    font-size: 11pt;
+    line-height: 1.35;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  a[href]::after {
+    content: '';
+  }
+}
