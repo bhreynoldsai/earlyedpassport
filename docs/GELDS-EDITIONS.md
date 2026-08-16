@@ -36,8 +36,12 @@ different editions of the standards.
 **Added:** `CD-MA6` +13 · `CLL7` +13 · `CD-MA8` +10 (new) · `CD-MA10` +9 (new)
 · `CLL4` +5 · `CLL5` +5 · `CLL6` +4 · `CD-MA9` +2 (new)
 
-**Retired:** `CLL8` −14 (**the whole standard**) · `CD-MA3` −11 (**the whole
-standard**) · `CD-MA4` −5 · `CD-MA1` −4 · `CD-MA5` −4 · `CD-MA7` −4
+**Retired:** `CLL8` −14 · `CD-MA3` −11 · `CD-MA4` −5 · `CD-MA1` −4 ·
+`CD-MA5` −4 · `CD-MA7` −4
+
+No standard disappeared outright, but two were pruned hard: **CLL8 went from 20
+indicators to 6** and **CD-MA3 from 18 to 7**. Those are the standards where a
+teacher is most likely to reach for a code she used last year and find it gone.
 
 ## Why this matters more than the numbers suggest
 
@@ -97,16 +101,35 @@ carry the portal's source id as part of the key, drop one record, or keep the
 gate and refuse the portal until DECAL fixes it. Silently picking one would
 mean a teacher sees an indicator whose wording we chose for her.
 
-## What I recommend
+## What was decided — 2026-08-16
 
-Re-point the importer at the live portal as the primary source, keep the 2013
-set as a second version rather than deleting it, and label both honestly. The
-2013 rows stay because historical plans must still render exactly as printed;
-new plans are written against the portal edition.
+**Switched to the live portal.** Bernard's call.
 
-Then track the 2026 Pre-K revision as it publishes, since Pre-K classrooms are
-the customers the IQ Guide gates.
+- `supabase/gelds/portal.ts` parses DECAL's HTML directly. It does not depend
+  on the supplied workbook — that was the tip-off, not the source.
+- **679 indicators**, all hard gates passed. The portal's own "Total Records"
+  count is cross-checked against the number parsed, so a truncated fetch fails
+  rather than importing quietly.
+- The 2013 set is **kept, relabelled `2013`**, not deleted. Both editions live
+  in `gelds_indicator` under different `gelds_version` values, and a test proves
+  the same code can carry different wording in each. Plans printed against 2013
+  keep rendering as printed.
+- `CURRENT_GELDS_VERSION` is now `portal-2026-08-16`. The invented
+  `2013-rev-2024` label is gone.
+- `CLL1.0b`: source id **237** kept (_"Responds to simple directions"_), id 238
+  dropped. The duplicate gate stays **hard** — this passes only via an explicit
+  `KNOWN_DUPLICATES` entry that names the code, the id kept and the reason.
+  Anything not on that list still fails the import outright.
 
-**Not doing any of that yet.** It changes which standards codes go onto a
-monitoring document, which is the one thing in this product that must not be
-decided casually.
+The portal parser is also **less fragile than the PDF path** — no bounding
+boxes, no vertically-centred table cells, no wrapped headings.
+
+### Still to do
+
+**Raise `CLL1.0b` with DECAL** when you write about permission. Two different
+indicators share one code on their live portal; they will want to know, and it
+saves us guessing which one a specialist expects.
+
+**Track the 2026 Pre-K revision.** CLL is published and includes `CLL10`, which
+is _not_ yet on the portal. When DECAL finishes, this becomes a third edition
+and the version machinery is already in place to carry it.

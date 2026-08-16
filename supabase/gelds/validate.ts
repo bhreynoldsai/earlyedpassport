@@ -39,12 +39,49 @@ export interface PriorVersionStats {
   total: number
 }
 
+/**
+ * Duplicate codes DECAL actually publishes.
+ *
+ * The duplicate gate stays HARD. This is a narrow, documented allowlist for
+ * defects in the source that we have looked at and decided about — anything not
+ * listed here still fails the import outright.
+ *
+ * Keeping it explicit matters: silently deduplicating would put wording *we*
+ * chose in front of a teacher, on a code a director reads off a monitoring
+ * document. Choosing deliberately, in public, is the least-bad option.
+ */
+export interface KnownDuplicate {
+  version: string
+  fullCode: string
+  /** The portal record id we keep. */
+  keepSourceId: number
+  why: string
+}
+
+export const KNOWN_DUPLICATES: readonly KnownDuplicate[] = [
+  {
+    version: 'portal-2026-08-16',
+    fullCode: 'CLL1.0b',
+    keepSourceId: 237,
+    why:
+      'The portal serves CLL1.0b twice: id 237 "Responds to simple directions" and id 238 ' +
+      '"Responds to repeated words and phrases." Two different indicators, one code. The lower ' +
+      'id is kept because the product can only attach one meaning to a code. Raise it with ' +
+      'DECAL — see docs/GELDS-EDITIONS.md.',
+  },
+]
+
+function isKnownDuplicate(version: string, fullCode: string): KnownDuplicate | undefined {
+  return KNOWN_DUPLICATES.find((d) => d.version === version && d.fullCode === fullCode)
+}
+
 export function validate(
   indicators: readonly RawIndicator[],
   prior?: PriorVersionStats
 ): ValidationReport {
   const failures: Failure[] = []
   const softFindings: string[] = []
+  const version = indicators[0]?.geldsVersion ?? ''
 
   // --- HARD GATE 1: every code matches the one true pattern --------------
   // Bounded standard number, so a parser bug producing PDM0.3b or PDM06.3b is
@@ -66,6 +103,14 @@ export function validate(
   for (const i of indicators) {
     const existing = seen.get(i.fullCode)
     if (existing) {
+      const known = isKnownDuplicate(version, i.fullCode)
+      if (known) {
+        softFindings.push(
+          `Known duplicate allowed through: ${i.fullCode}. Keeping source id ` +
+            `${known.keepSourceId}. ${known.why}`
+        )
+        continue
+      }
       const sameText = existing.indicatorText === i.indicatorText
       duplicates.push(
         `${i.fullCode} (${existing.sourceFile} p${existing.sourcePage} and ` +

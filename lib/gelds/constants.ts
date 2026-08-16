@@ -67,5 +67,15 @@ export const AGE_BAND_VALUES: readonly AgeBand[] = AGE_BANDS.map((a) => a.band)
 export const FULL_CODE_PATTERN =
   /^(?:(PDM|SED|APL|CLL)|CD-(MA|SC|SS|CR|CP))([1-9]\d?)\.([0-4])([a-f])?$/
 
-/** The GELDS revision this build targets. Stamped onto every attached code. */
-export const CURRENT_GELDS_VERSION = '2013-rev-2024'
+/**
+ * The edition new plans are written against. Stamped onto every attached code.
+ *
+ * More than one edition is in circulation: the 2013 age-band PDFs, this live
+ * portal snapshot, and a 2026 Pre-K revision now publishing. Every attached
+ * code carries the version it was chosen under, so a plan printed in one year
+ * still shows what it showed. See docs/GELDS-EDITIONS.md.
+ */
+export const CURRENT_GELDS_VERSION = 'portal-2026-08-16'
+
+/** The superseded edition. Retained so historical plans still render. */
+export const LEGACY_GELDS_VERSION = '2013'
