@@ -1,0 +1,14 @@
+# Downloaded source material. Not our code, and not ours to reformat — DECAL's
+# portal HTML uses unquoted href attributes, which Prettier cannot even parse.
+# These files are committed as evidence of what the portal served on the
+# snapshot date, so they must stay byte-for-byte as received.
+supabase/gelds/source/
+
+# Importer output. Written by supabase/gelds/import.ts with its own formatting;
+# letting Prettier restyle it would make a clean re-run show a spurious diff.
+supabase/gelds/gelds-*.json
+
+# Generated or vendored.
+pnpm-lock.yaml
+.next/
+node_modules/
