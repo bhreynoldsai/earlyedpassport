@@ -21,7 +21,7 @@
  * ---------------------------------------------------------------------------
  */
 
-import '../load-env'
+import { missingEnvMessage } from '../load-env'
 import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 import type { Database } from '../../lib/supabase/database.types'
 import {
@@ -44,7 +44,8 @@ type Db = SupabaseClient<Database>
 function requireEnv(name: string, alt?: string): string {
   const value = process.env[name] ?? (alt ? process.env[alt] : undefined)
   if (!value) {
-    throw new Error(`${name} is not set${alt ? ` (${alt} also accepted)` : ''}. See .env.example.`)
+    const also = alt ? `\n\n${alt} is accepted instead.` : ''
+    throw new Error(missingEnvMessage(name) + also)
   }
   return value
 }

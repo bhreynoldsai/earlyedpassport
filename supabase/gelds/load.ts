@@ -11,17 +11,14 @@
  */
 
 import { createClient } from '@supabase/supabase-js'
+import { missingEnvMessage } from '../load-env'
 import type { RawIndicator } from './parse'
 
 const CHUNK = 200
 
 function requireEnv(name: string): string {
   const value = process.env[name]
-  if (!value) {
-    throw new Error(
-      `${name} is not set. The loader needs a service role key; it is server-only and must never appear in a NEXT_PUBLIC_ variable.`
-    )
-  }
+  if (!value) throw new Error(missingEnvMessage(name))
   return value
 }
 

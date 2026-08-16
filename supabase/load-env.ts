@@ -25,7 +25,33 @@ import { config } from 'dotenv'
 // invoked from a subdirectory.
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 
+const ENV_FILE = join(ROOT, '.env.local')
+
 for (const file of ['.env.local', '.env']) {
   const path = join(ROOT, file)
   if (existsSync(path)) config({ path, quiet: true })
+}
+
+/**
+ * The message shown when a required variable is missing.
+ *
+ * It names the file and says to create it, because the mistake this replaces
+ * was typing `NAME=value` at a zsh prompt — which sets a shell parameter that
+ * is never exported, so the script sees nothing and the old message ("see
+ * .env.example") gave no hint that a *file* was the missing piece.
+ */
+export function missingEnvMessage(name: string): string {
+  const lines = [
+    `${name} is not set.`,
+    '',
+    existsSync(ENV_FILE)
+      ? `${ENV_FILE} exists but does not define ${name}. Add it there.`
+      : `Create a file called .env.local in the repo root (${ROOT}) and put ${name} in it.`,
+    '',
+    'It has to be a FILE. Typing NAME=value at the shell prompt sets a shell',
+    'variable that child processes never see. .env.local is gitignored.',
+    '',
+    'See docs/SUPABASE-SETUP.md, or copy .env.example as a starting point.',
+  ]
+  return lines.join('\n')
 }

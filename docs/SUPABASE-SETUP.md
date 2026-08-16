@@ -109,6 +109,32 @@ repo, and never in a `NEXT_PUBLIC_` variable — `next.config.ts` throws at buil
 time if it finds one. Exactly two things use it: the GELDS importer and the seed
 script.
 
+### Creating `.env.local`
+
+These have to go in a **file**. Typing `NAME=value` at a shell prompt sets a
+shell parameter that is never exported, so `tsx` sees nothing — the scripts fail
+with "is not set" while the values appear to be right there in the terminal.
+
+From the repo root, write the two public values:
+
+```bash
+cat > .env.local <<'EOF'
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+EOF
+```
+
+Then open it and fill in the values:
+
+```bash
+open -e .env.local
+```
+
+Put the service role key in with the editor rather than on the command line —
+a shell records what you type, and that key is worth protecting from your own
+scrollback. `.env.local` is gitignored.
+
 ### Key naming
 
 Supabase renamed the browser key. New projects issue `sb_publishable_…` under
