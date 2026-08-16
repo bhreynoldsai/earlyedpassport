@@ -27,6 +27,8 @@ const PUBLIC_PREFIXES = [
   '/sign-in',
   '/invite',
   '/reset-password',
+  // Where every invite/reset email link lands, before a session exists.
+  '/auth/confirm',
 ]
 
 function isPublic(pathname: string): boolean {

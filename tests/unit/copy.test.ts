@@ -70,3 +70,25 @@ describe('plain-English domain names', () => {
     expect(Object.keys(copy.indicators.subdomainPlain)).toEqual(['MA', 'SC', 'SS', 'CR', 'CP'])
   })
 })
+
+describe('auth copy', () => {
+  it('names all four staff_role values', () => {
+    expect(Object.keys(copy.auth.roleNames)).toEqual([
+      'teacher',
+      'lead_teacher',
+      'director',
+      'org_admin',
+    ])
+  })
+
+  it('does not say which of email or password was wrong', () => {
+    // Naming the field helps someone guessing at an account that exists.
+    expect(copy.auth.wrongCredentials).not.toMatch(/\bpassword is wrong\b/i)
+    expect(copy.auth.wrongCredentials).not.toMatch(/\bemail (not found|doesn't exist)\b/i)
+  })
+
+  it('the invite confirmation always includes the address it went to', () => {
+    expect(copy.team.inviteSent('a@example.com')).toContain('a@example.com')
+    expect(copy.team.addedToTeam('a@example.com')).toContain('a@example.com')
+  })
+})

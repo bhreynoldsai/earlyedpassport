@@ -169,12 +169,50 @@ ahead of its ticket is how the schema ends up wrong.
 
 ---
 
+## 6. Auth: let invite and password-reset emails land somewhere real
+
+Ticket T-0.5. Sign-in itself (`supabase.auth.signInWithPassword`) needs nothing
+beyond the two public values already set in step 4. **Invite and password
+reset need one more thing, in the Supabase dashboard, that cannot be done from
+the CLI or from code:**
+
+**Authentication → URL Configuration → Redirect URLs** — add:
+
+```
+https://earlyedpassport.com/**
+```
+
+(and, for local development, `http://localhost:3000/**`.)
+
+Both `inviteStaff()` (`lib/auth/invite-staff.ts`) and the "forgot password"
+flow (`components/auth/sign-in-form.tsx`) pass a `redirectTo` pointing at
+`/auth/confirm`. GoTrue silently refuses any `redirectTo` that is not on this
+list — the email still sends, but the link in it falls back to the project's
+default Site URL instead of our app, and a director's invite goes nowhere
+useful. There is no error in our logs when this happens, because from our side
+nothing failed: the request to Supabase succeeded. The only symptom is a
+teacher clicking a link that lands somewhere blank. Add both entries **before**
+testing invite or reset for real.
+
+### Why the confirm route exists at all
+
+`app/auth/confirm/route.ts` is where every invite and reset email link lands.
+It is not the `/invite` or `/reset-password` page itself — those pages only
+know how to set a password on an _already-authenticated_ session, and GoTrue's
+emailed links do not carry one. They carry a `token_hash`, redeemable exactly
+once, server-side, via `supabase.auth.verifyOtp()`. The confirm route redeems
+it and redirects to the real page; if you ever see `/invite` or
+`/reset-password` show "That link isn't good anymore" for a link that should
+still be valid, the redirect allow-list above is the first thing to check.
+
+---
+
 ## Local development without Supabase
 
 Most work does not need a Supabase project at all.
 
 Start the local stack on 54321/54322, rebuild the schema from zero, then run the
-248 tests including RLS against real Postgres:
+288 tests including RLS against real Postgres:
 
 ```bash
 supabase start
