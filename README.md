@@ -97,7 +97,14 @@ pnpm gelds:import --fetch    # download the source PDFs from DECAL first
 pnpm gelds:import --load     # also load, once Supabase is configured
 ```
 
-**3. Compliance never blocks enrollment.** DECAL prohibits requiring Form 3231
+**3. Nothing a teacher types is ever lost.** Every write goes into IndexedDB
+first and the UI says `Saved` immediately — it never waits on the network,
+because in a back classroom the network is not coming. A dead router is not an
+error state; it is `Saved on this phone`. When a write loses a last-write-wins
+race the losing copy is kept and offered for comparison, never discarded. There
+is no merge UI: she is holding a toddler.
+
+**4. Compliance never blocks enrollment.** DECAL prohibits requiring Form 3231
 or Form 3300 as a condition of enrollment, and a valid appointment card keeps a
 child enrolled past either deadline. There is no code path from a missing
 document to a block, and `lib/compliance/rules.ts` exposes no flag that could
@@ -140,6 +147,7 @@ app/(marketing)      the five-page public site
 app/(auth)           login, invite acceptance, password reset
 app/(app)            the authenticated product
 components/shared    domain chip, coverage bar, empty states
+lib/offline          write queue, blob store, conflict store, SW registration
 lib/gelds            indicator lookup, code parsing, the AGE_BANDS constant
 supabase/gelds       the import pipeline and its committed JSON artifact
 lib/compliance       per-form deadline rules — the only place 30 and 90 appear

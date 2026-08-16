@@ -19,7 +19,14 @@ import { expect, test } from '@playwright/test'
  */
 
 test.describe('a dead wifi router does not lose a teacher’s work', () => {
-  test.fixme(true, 'Turns green as T-1.4, T-1.5 and T-3.2 land.')
+  // The machinery underneath is built and unit-tested (T-0.8): IndexedDB write
+  // queue, photo blob store, conflict store, service worker, SaveChip. What is
+  // still missing is the screens these steps drive, so the spec stays pending
+  // rather than passing vacuously.
+  test.fixme(
+    true,
+    'Machinery landed in T-0.8. Turns green as T-1.4, T-1.5 and T-3.2 add the screens.'
+  )
 
   test('an observation and a full week of plans survive going offline', async ({
     page,
