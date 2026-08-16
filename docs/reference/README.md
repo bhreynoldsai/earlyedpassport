@@ -28,6 +28,26 @@ The IQ Guide is published as `AppendixT_IQ_GuideforPlanningInstruction.docx` eve
 though the guidelines body text calls it Appendix N. That inconsistency is
 DECAL's, and it is why the file is hard to find.
 
+### `decal/sample-plans/` — received ✅
+
+Five DECAL sample lesson plans, one per age band. These turned out to be worth
+more than expected: they carry **122 real GELDS codes**, which now live in
+`tests/fixtures/decal-sample-plan-codes.ts` as a conformance suite. Every one of
+them parses, all five domains and all five CD subdomains appear, and the CD code
+shape is now confirmed in bands 0, 2, 3 and 4 rather than 48–60 months alone.
+
+| File                                          | Band | Codes | Text layer        |
+| --------------------------------------------- | ---- | ----- | ----------------- |
+| `BytheFarmLessonPlan_0-12_Months.pdf`         | 0    | 29    | ✅                |
+| `FlowersLessonPlan_12-24_Months.pdf`          | 1    | —     | ❌ **image only** |
+| `ArcticAnimalsLessonPlan_24-36_Months.pdf`    | 2    | 42    | ✅                |
+| `CommunityHelpersLessonPlan_36-48_Months.pdf` | 3    | 25    | ✅                |
+| `AnimalsinWinter_LargeGroup_48-60_Months.pdf` | 4    | 27    | ✅                |
+
+**The 12–24 month plan is a scanned image with no text layer**, so nothing could
+be extracted from it and band 1 is the one band still unconfirmed. If a
+text-layer version exists on decal.ga.gov, replacing this file closes the gap.
+
 ---
 
 ## `gelds/` — the standards themselves
