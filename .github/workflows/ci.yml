@@ -49,6 +49,12 @@ jobs:
       - name: Lint (includes token and copy rules)
         run: pnpm lint
 
+      - name: Schema rebuilds from zero
+        run: pnpm db:verify
+
+      - name: Generated types match the migrations
+        run: pnpm db:types:check
+
       - name: Types
         run: pnpm typecheck
 

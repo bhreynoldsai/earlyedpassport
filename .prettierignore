@@ -8,6 +8,9 @@ supabase/gelds/source/
 # letting Prettier restyle it would make a clean re-run show a spurious diff.
 supabase/gelds/gelds-*.json
 
+# Generated from the migrations by `pnpm db:types`.
+lib/supabase/database.types.ts
+
 # Generated or vendored.
 pnpm-lock.yaml
 .next/
