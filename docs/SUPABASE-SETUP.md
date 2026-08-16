@@ -49,7 +49,18 @@ adds a table and forgets.
 
 ## 2. Apply the migrations
 
-The project starts empty. Until this runs, every query returns
+**Every command below runs from inside a clone of this repository.** `link`
+writes its state into `supabase/.temp`, and `db push` reads the migrations from
+`supabase/migrations` — run either from your home directory and the CLI links
+the wrong folder while `pnpm` reports no `package.json`.
+
+```bash
+git clone https://github.com/bhreynoldsai/earlyedpassport.git
+cd earlyedpassport
+pnpm install
+```
+
+The project starts empty. Until the push runs, every query returns
 `PGRST205 — Could not find the table`.
 
 ```bash
@@ -59,7 +70,7 @@ pnpm dlx supabase@latest db push
 ```
 
 The project ref is the subdomain: for `https://abcdefgh.supabase.co` it is
-`abcdefgh`. `db push` asks for the database password from step 1.
+`abcdefgh`. `db push` prompts for the database password from step 1.
 
 Migrations are **forward-only**. Never edit one that has been applied — add a
 new numbered file. `pnpm db:verify` rebuilds the schema from zero in a scratch
@@ -136,11 +147,20 @@ ahead of its ticket is how the schema ends up wrong.
 
 Most work does not need a Supabase project at all.
 
+Start the local stack on 54321/54322, rebuild the schema from zero, then run the
+248 tests including RLS against real Postgres:
+
 ```bash
-supabase start                  # local stack on 54321/54322
-pnpm db:verify                  # rebuild the schema from zero
-pnpm test                       # 248 tests, including RLS against real Postgres
+supabase start
+pnpm db:verify
+pnpm test
 ```
+
+> Every command in this file is written without trailing `#` comments on
+> purpose. macOS ships zsh, and an interactive zsh does **not** treat `#` as a
+> comment unless `interactive_comments` is set — so a pasted line with an
+> explanatory comment on the end passes the comment to the command as
+> arguments. Explanations go above the block, never beside the command.
 
 The RLS suite needs `DATABASE_URL` pointed at a throwaway Postgres. Without it
 those tests **skip**, and a green run that skipped them proves nothing — CI
