@@ -15,6 +15,7 @@
  * nothing but `curl`.
  */
 
+import '../load-env'
 import { execFileSync } from 'node:child_process'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
