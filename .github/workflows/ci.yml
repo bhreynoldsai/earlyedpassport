@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  # Branch commits are covered by the pull_request trigger. Listening to both
+  # push:['**'] and pull_request runs every PR commit twice for no extra signal.
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    # The RLS tests need a real Postgres. Without one they SKIP, and a green
+    # run that skipped them proves nothing — so CI always provides one.
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: eep_test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/eep_test
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Formatting
+        run: pnpm format:check
+
+      - name: Lint (includes token and copy rules)
+        run: pnpm lint
+
+      - name: Types
+        run: pnpm typecheck
+
+      - name: Tests (unit + row level security)
+        run: pnpm test
+
+      - name: Guard against a skipped RLS suite
+        run: |
+          # A run where the RLS tests skipped is not a passing run.
+          pnpm test 2>&1 | tee /tmp/test.log
+          if grep -q "RLS tests were SKIPPED" /tmp/test.log; then
+            echo "::error::The RLS suite skipped. DATABASE_URL is not reaching the tests."
+            exit 1
+          fi
+
+      - name: Build
+        run: pnpm build
+
+      - name: Release blockers
+        # Reports on every run; fatal only on a version tag.
+        run: pnpm lint:release
