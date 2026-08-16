@@ -1,0 +1,19 @@
+# DECAL's bytes, exactly as their server sent them.
+#
+# These files are evidence of what the portal served on the snapshot date, and
+# the GELDS artifact is only trustworthy if it can still be re-derived from
+# them. Prettier reformatted portal-search.html once — rewriting single-quoted
+# attributes to double and wrapping them across lines — which left a committed
+# source that no longer produced the committed artifact. `.prettierignore` stops
+# that recurring; this stops git's own end-of-line normalisation doing the same
+# thing on a checkout, and marks them binary so a re-fetch does not print a
+# 17,000-line diff nobody will read.
+#
+# tests/unit/gelds-artifact.test.ts is the actual guarantee: it re-parses these
+# files and asserts they still produce the committed artifact.
+supabase/gelds/source/** -text -diff linguist-generated
+
+# Generated, and not worth reviewing as a diff.
+supabase/gelds/gelds-*.json -diff linguist-generated
+lib/supabase/database.types.ts -diff linguist-generated
+pnpm-lock.yaml -diff linguist-generated

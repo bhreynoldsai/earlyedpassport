@@ -96,6 +96,24 @@ which is why there is no form yet.
 
 ---
 
+## Blocking Phase 1
+
+### 0. Which GELDS edition does the product teach? — **NEW, and it outranks the rest**
+
+The 657 indicators we loaded are the **2013** edition. The live portal carries
+**679** — 71 we lack, 49 we hold that DECAL has retired. Verified against the
+portal directly, not just the supplied workbook.
+
+Worst case is phonological awareness: **3 indicators in what we loaded, 16 on
+the portal**, for a component Georgia Pre-K requires _daily_ and scores.
+
+A third edition (2026 Pre-K, CLL first, FY27 rollout) is already publishing.
+
+Full write-up and my recommendation: [`docs/GELDS-EDITIONS.md`](GELDS-EDITIONS.md).
+Needs your call before the indicator chooser is built on top of it.
+
+---
+
 ## Blocking Phase 0 scope
 
 ### 8. Part 0.5 — reliable wifi, verified by walking the building

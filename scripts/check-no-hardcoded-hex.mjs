@@ -14,7 +14,15 @@ import { join, relative } from 'node:path'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const SCAN_DIRS = ['app', 'components', 'lib']
-const ALLOWED = new Set(['app/globals.css'])
+const ALLOWED = new Set([
+  // The token sheet itself.
+  'app/globals.css',
+  // The PWA manifest. The browser reads background_color and theme_color
+  // before any stylesheet exists, so they cannot be custom properties. They are
+  // pinned to the token sheet by tests/unit/manifest-colors.test.ts, which
+  // fails if the two ever drift.
+  'app/manifest.ts',
+])
 const EXTENSIONS = /\.(tsx?|jsx?|css)$/
 const HEX = /#[0-9a-fA-F]{3,8}\b/g
 

@@ -34,6 +34,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # pdftotext, for the test that re-parses the committed 2013 PDFs and
+      # proves they still produce the committed GELDS artifact. Without it that
+      # half of tests/unit/gelds-artifact.test.ts skips, and a skipped
+      # provenance check is exactly what it exists to prevent.
+      - name: Install poppler-utils
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends poppler-utils
+
       - uses: pnpm/action-setup@v4
 
       - uses: actions/setup-node@v4
@@ -48,6 +55,12 @@ jobs:
 
       - name: Lint (includes token and copy rules)
         run: pnpm lint
+
+      - name: Schema rebuilds from zero
+        run: pnpm db:verify
+
+      - name: Generated types match the migrations
+        run: pnpm db:types:check
 
       - name: Types
         run: pnpm typecheck

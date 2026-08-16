@@ -22,9 +22,11 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "db:reset": "supabase db reset",
-    "db:types": "supabase gen types typescript --local > lib/supabase/database.types.ts",
+    "db:types": "node scripts/db-bootstrap.mjs --types",
     "gelds:import": "tsx supabase/gelds/import.ts",
-    "seed": "tsx supabase/seed/seed.ts"
+    "seed": "tsx supabase/seed/seed.ts",
+    "db:verify": "node scripts/db-bootstrap.mjs",
+    "db:types:check": "node scripts/db-bootstrap.mjs --types --check"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

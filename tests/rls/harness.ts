@@ -8,6 +8,11 @@
  * We stand up a small shim of Supabase's auth schema (auth.users, auth.uid())
  * because that is all our policies actually depend on.
  *
+ * Table privileges are NOT granted here. They come from migration 0006, the
+ * same as in production, so these tests exercise the real privilege set. An
+ * earlier version of this file granted them itself, which meant the suite could
+ * not have caught a table shipped without a grant.
+ *
  * Set DATABASE_URL to a throwaway Postgres. Never point this at staging or
  * production.
  */
@@ -32,6 +37,9 @@ const BOOTSTRAP = `
     if not exists (select 1 from pg_roles where rolname = 'authenticated') then
       create role authenticated nologin noinherit;
     end if;
+    if not exists (select 1 from pg_roles where rolname = 'service_role') then
+      create role service_role nologin noinherit bypassrls;
+    end if;
   end $$;
 
   drop schema if exists auth cascade;
@@ -49,19 +57,8 @@ const BOOTSTRAP = `
     select nullif(current_setting('request.jwt.claims', true)::json ->> 'sub', '')::uuid;
   $$;
 
-  grant usage on schema public to anon, authenticated;
-  grant usage on schema auth to anon, authenticated;
-  grant execute on function auth.uid() to anon, authenticated;
-`
-
-/** RLS sits on top of grants, so the roles need table privileges to be tested. */
-const GRANTS = `
-  grant select, insert, update on all tables in schema public to authenticated;
-  grant usage, select on all sequences in schema public to authenticated;
-  grant execute on all functions in schema public to authenticated;
-  -- anon deliberately gets table grants too, so that "anon cannot read"
-  -- proves the POLICY is doing the work rather than a missing GRANT.
-  grant select on all tables in schema public to anon;
+  grant usage on schema auth to anon, authenticated, service_role;
+  grant execute on function auth.uid() to anon, authenticated, service_role;
 `
 
 export async function connect(): Promise<Client> {
@@ -79,8 +76,6 @@ export async function resetSchema(client: Client): Promise<void> {
     const sql = await readFile(join(MIGRATIONS_DIR, file), 'utf8')
     await client.query(sql)
   }
-
-  await client.query(GRANTS)
 }
 
 export interface Fixture {
