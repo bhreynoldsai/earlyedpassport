@@ -186,6 +186,60 @@ export const copy = {
     forgot: 'I forgot my password',
     inviteStaff: 'Add a teacher',
     checkEmail: 'Check your email. We sent you a link.',
+    /** Deliberately vague. Naming which field was wrong helps a guesser. */
+    wrongCredentials: 'That email or password doesn’t match what we have.',
+    /** A used or stale invite/reset link, per app/auth/confirm/route.ts. */
+    linkExpired: 'That link stopped working. Ask for a new one below.',
+    backToSignIn: 'Back to sign in',
+    sendResetLink: 'Send the link',
+    resetIntro: 'Tell us your email and we’ll send you a link to pick a new password.',
+    newPassword: 'New password',
+    confirmPassword: 'Type it again',
+    passwordHint: 'Use at least 8 characters.',
+    savePassword: 'Save password',
+    /** Shown once, right after updateUser() succeeds. */
+    passwordSaved: 'Your password is set. Taking you in…',
+    welcomeSetPassword: 'Welcome. Pick a password to finish setting up your account.',
+    pickNewPassword: 'Pick a new password.',
+    /** Landing on /invite or /reset-password with no session — an old tab,
+     *  a link opened twice, or a bookmark to a page that expects one. */
+    noSessionHere: 'That link isn’t good anymore. Ask for a new one.',
+    signingIn: 'Signing you in…',
+    noCenterYet: 'You’re signed in, but you’re not on a team yet. Ask your director to add you.',
+    /** The four staff_role values, in words a director would actually say. */
+    roleNames: {
+      teacher: 'Teacher',
+      lead_teacher: 'Lead teacher',
+      director: 'Director',
+      org_admin: 'Admin',
+    },
+  },
+
+  team: {
+    title: 'Your team',
+    addTeacher: 'Add a teacher',
+    fullName: 'Name',
+    role: 'Role',
+    pickRole: 'Pick a role',
+    rooms: 'Rooms',
+    noRoomsAssigned: 'No rooms yet',
+    sendInvite: 'Send the invite',
+    sendingInvite: 'Sending…',
+    /** New person: an email actually went out. */
+    inviteSent: (email: string) => `We sent an invite to ${email}.`,
+    /** Existing person, moving centers or coming back: no email needed. */
+    addedToTeam: (email: string) => `${email} is on your team now.`,
+    onlyDirectorsCanAdd: 'Only a director can add someone to the team.',
+  },
+
+  /** The signed-in home screen. Deliberately plain — Roster and Director
+   *  Dashboard are Phase 1/2 tickets; this just proves who is signed in and
+   *  what they can reach. */
+  home: {
+    greeting: (name: string) => `Hi, ${name}.`,
+    roleAtCenter: (role: string, center: string) => `${role} at ${center}`,
+    yourRooms: 'Your rooms',
+    moreThanOneCenter: 'You work at more than one center. This shows the first one for now.',
   },
 
   /** Screen-reader-only text. Color is never the only signal. */
