@@ -1,8 +1,10 @@
 name: CI
 
 on:
+  # Branch commits are covered by the pull_request trigger. Listening to both
+  # push:['**'] and pull_request runs every PR commit twice for no extra signal.
   push:
-    branches: ['**']
+    branches: [main]
     tags: ['v*']
   pull_request:
 
