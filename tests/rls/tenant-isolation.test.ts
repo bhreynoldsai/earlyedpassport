@@ -231,12 +231,13 @@ describe.skipIf(!hasDatabase)('row level security', () => {
       [f.centerA, f.directorA, f.childA1]
     )
 
-    // No UPDATE or DELETE policy exists on audit_log, so Postgres finds no
-    // rows to act on rather than raising. Zero rows affected IS the security
-    // property, and it is what production behaves like: Supabase grants table
-    // privileges broadly and relies on RLS as the only gate.
+    // Append-only is locked twice over: 0005 gives audit_log no UPDATE and no
+    // DELETE policy, and 0006 gives `authenticated` no UPDATE and no DELETE
+    // grant. Either alone would hold — the grant refuses outright, and if the
+    // grant were ever widened the missing policy would still match zero rows.
+    // Assert the row is untouched, which is the property that matters, and
+    // accept either mechanism as the reason it held.
     const update = await asUser(client, f.directorA, `update audit_log set action = 'create'`)
-    expect(update.error).toBeNull()
     expect(update.rowCount).toBe(0)
 
     const remove = await asUser(client, f.directorA, `delete from audit_log`)

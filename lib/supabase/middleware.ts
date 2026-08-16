@@ -14,6 +14,7 @@
 import { createServerClient, type CookieOptions } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 import type { Database } from './database.types'
+import { PUBLIC_SUPABASE_KEY, PUBLIC_SUPABASE_URL } from './env'
 
 /** Reachable without a session. Everything else redirects to sign-in. */
 const PUBLIC_PREFIXES = [
@@ -35,13 +36,13 @@ function isPublic(pathname: string): boolean {
 export async function updateSession(request: NextRequest): Promise<NextResponse> {
   let response = NextResponse.next({ request })
 
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
-  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  const url = PUBLIC_SUPABASE_URL
+  const key = PUBLIC_SUPABASE_KEY
   // Not configured yet: let the request through rather than locking everyone
   // out of the marketing site. RLS still protects the data.
-  if (!url || !anonKey) return response
+  if (!url || !key) return response
 
-  const supabase = createServerClient<Database>(url, anonKey, {
+  const supabase = createServerClient<Database>(url, key, {
     cookies: {
       getAll() {
         return request.cookies.getAll()

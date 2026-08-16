@@ -1,22 +1,15 @@
 import type { NextConfig } from 'next'
+import { assertNoExposedSecrets } from './lib/security/public-env'
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   typedRoutes: true,
-  // The service role key must never reach the browser. This is the build-time
-  // check required by BUILD-INSTRUCTIONS §7.1.
   env: {},
 }
 
-if (
-  typeof process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY === 'string' ||
-  Object.keys(process.env).some(
-    (k) => k.startsWith('NEXT_PUBLIC_') && k.toLowerCase().includes('service_role')
-  )
-) {
-  throw new Error(
-    'A service role key is exposed through a NEXT_PUBLIC_ env var. Remove it before building.'
-  )
-}
+// The service role key must never reach the browser. BUILD-INSTRUCTIONS §7.1.
+// Checks both names and values — see lib/security/public-env.ts for why the
+// value check is the one that catches the realistic mistake.
+assertNoExposedSecrets(process.env)
 
 export default nextConfig

@@ -19,39 +19,30 @@ import { createServerClient as createSupabaseServerClient, type CookieOptions } 
 import { createClient as createSupabaseClient } from '@supabase/supabase-js'
 import { cookies } from 'next/headers'
 import type { Database } from './database.types'
-
-function requireEnv(name: string): string {
-  const value = process.env[name]
-  if (!value) throw new Error(`${name} is not set. See .env.example.`)
-  return value
-}
+import { requireServiceRoleKey, requireSupabaseKey, requireSupabaseUrl } from './env'
 
 /** The normal path. Subject to RLS, as every product query must be. */
 export async function createServerClient() {
   const cookieStore = await cookies()
 
-  return createSupabaseServerClient<Database>(
-    requireEnv('NEXT_PUBLIC_SUPABASE_URL'),
-    requireEnv('NEXT_PUBLIC_SUPABASE_ANON_KEY'),
-    {
-      cookies: {
-        getAll() {
-          return cookieStore.getAll()
-        },
-        setAll(cookiesToSet: { name: string; value: string; options?: CookieOptions }[]) {
-          try {
-            for (const { name, value, options } of cookiesToSet) {
-              cookieStore.set(name, value, options)
-            }
-          } catch {
-            // Called from a Server Component, where cookies are read-only. The
-            // middleware refreshes the session instead, so this is safe to
-            // swallow — see lib/supabase/middleware.ts.
-          }
-        },
+  return createSupabaseServerClient<Database>(requireSupabaseUrl(), requireSupabaseKey(), {
+    cookies: {
+      getAll() {
+        return cookieStore.getAll()
       },
-    }
-  )
+      setAll(cookiesToSet: { name: string; value: string; options?: CookieOptions }[]) {
+        try {
+          for (const { name, value, options } of cookiesToSet) {
+            cookieStore.set(name, value, options)
+          }
+        } catch {
+          // Called from a Server Component, where cookies are read-only. The
+          // middleware refreshes the session instead, so this is safe to
+          // swallow — see lib/supabase/middleware.ts.
+        }
+      },
+    },
+  })
 }
 
 /**
@@ -62,9 +53,7 @@ export async function createServerClient() {
  * multi-tenant leak cannot be caught by the database.
  */
 export function createServiceRoleClient() {
-  return createSupabaseClient<Database>(
-    requireEnv('NEXT_PUBLIC_SUPABASE_URL'),
-    requireEnv('SUPABASE_SERVICE_ROLE_KEY'),
-    { auth: { persistSession: false, autoRefreshToken: false } }
-  )
+  return createSupabaseClient<Database>(requireSupabaseUrl(), requireServiceRoleKey(), {
+    auth: { persistSession: false, autoRefreshToken: false },
+  })
 }
