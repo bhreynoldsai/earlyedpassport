@@ -7,6 +7,10 @@ Markers in this file are read by `scripts/check-release-blockers.mjs`. They
 report on every CI run and **fail a tagged release build**. Delete a marker only
 when the underlying item is genuinely resolved.
 
+**Documents go in [`docs/reference/`](reference/README.md)** — that README lists
+every file we are waiting on, where to put it, and what I do with it once it
+lands. No real child data in this repo, ever.
+
 ---
 
 ## Blocking launch
