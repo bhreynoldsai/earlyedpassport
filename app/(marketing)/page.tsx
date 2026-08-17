@@ -1,15 +1,18 @@
 import { ClassicalButton } from '@/components/marketing/classical-button'
 import { Plate } from '@/components/marketing/plate'
-import { Tag } from '@/components/marketing/tag'
+import { SamplePlan } from '@/components/marketing/sample-plan'
 
 /**
  * Home. Above the fold: the one sentence a director understands immediately,
  * the buyer and the state named, one primary button, one secondary.
  *
- * TODO(marketing-assets): both plates on this page are still placeholders —
- * a real phone screenshot of next week's plan and a real passport page.
- * DESIGN-BRIEF §8 says not to launch with an abstract stand-in; see
- * components/marketing/plate.tsx for what's already known to be needed.
+ * The hero shows a real sample plan (see components/marketing/sample-plan.tsx)
+ * rather than a screenshot or stock photo — it's what the page's own "See a
+ * sample plan" CTA promises, and DESIGN-BRIEF §8 rules out stock photography
+ * and abstract stand-ins for this slot.
+ *
+ * TODO(marketing-assets): the passport plate below is still a placeholder —
+ * a real screenshot of a child's passport page. See plate.tsx.
  */
 
 const STEPS = [
@@ -25,6 +28,14 @@ const STEPS = [
     step: 'Print and post',
     body: 'One page per week, codes next to every activity, ready for the wall and for the monitoring binder.',
   },
+]
+
+const SAMPLE_PLAN_ROWS = [
+  { day: 'Mon', activity: 'Morning circle: meet a helper', domain: 'Feelings & Friends' },
+  { day: 'Tue', activity: 'Building blocks: our town', domain: 'Moving & Growing' },
+  { day: 'Wed', activity: 'Story time: whose truck is this?', domain: 'Talking & Reading' },
+  { day: 'Thu', activity: 'Art: community mural', domain: 'How They Learn' },
+  { day: 'Fri', activity: 'How do helpers get to work?', domain: 'Thinking & Learning' },
 ]
 
 const CHECKLIST = [
@@ -72,17 +83,7 @@ export default function HomePage() {
               </ClassicalButton>
             </div>
           </div>
-          <div>
-            <Plate
-              placeholder="Drop a phone screenshot of next week's plan"
-              className="aspect-[4/5] w-full"
-            />
-            <div className="mt-2 flex flex-wrap gap-1.5">
-              <Tag>Moving &amp; Growing</Tag>
-              <Tag>Talking &amp; Reading</Tag>
-              <Tag variant="outline">+3 more</Tag>
-            </div>
-          </div>
+          <SamplePlan weekOf="Aug 17" theme="Community Helpers" rows={SAMPLE_PLAN_ROWS} />
         </section>
       </div>
 
