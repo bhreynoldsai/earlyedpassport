@@ -26,13 +26,13 @@
 
 ## 0.2 Who you're selling to
 
-| Field                                                                               | Your answer |
-| ----------------------------------------------------------------------------------- | ----------- |
-| Primary customer (center director? owner? franchise group?)                         |             |
-| Center size you're aiming at (# classrooms, # children)                             |             |
-| Georgia-only at launch, or other states later?                                      |             |
-| Are these Georgia Pre-K funded classrooms, private pay, Head Start, CAPS, or a mix? |             |
-| Are your targets Quality Rated participants?                                        |             |
+| Field                                                                               | Your answer                              |
+| ----------------------------------------------------------------------------------- | ---------------------------------------- |
+| Primary customer (center director? owner? franchise group?)                         |                                          |
+| Center size you're aiming at (# classrooms, # children)                             |                                          |
+| Georgia-only at launch, or other states later?                                      |                                          |
+| Are these Georgia Pre-K funded classrooms, private pay, Head Start, CAPS, or a mix? |                                          |
+| Are your targets Quality Rated participants?                                        |                                          |
 | Price you have in mind (per center/mo? per classroom/mo? per child?)                | $149/center/mo, per location — confirmed |
 
 ## 0.3 The pain you're solving (in your words)
