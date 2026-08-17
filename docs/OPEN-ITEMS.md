@@ -74,10 +74,10 @@ not hue.
 
 ## Blocking the marketing site
 
-### 5. Pricing — `TODO(pricing)`
+### 5. Pricing — resolved
 
-Part 0.2 is blank. Every number on `/pricing` is structure, not a decision. Do
-not quote them to a center.
+Confirmed by Bernard: $149/center/mo, per location, unlimited classrooms and
+teachers. Recorded in PROJECT-INSTRUCTIONS §0.2 and live on `/pricing`.
 
 ### 6. Real product screenshots — `TODO(marketing-assets)`
 

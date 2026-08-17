@@ -33,7 +33,7 @@
 | Georgia-only at launch, or other states later?                                      |             |
 | Are these Georgia Pre-K funded classrooms, private pay, Head Start, CAPS, or a mix? |             |
 | Are your targets Quality Rated participants?                                        |             |
-| Price you have in mind (per center/mo? per classroom/mo? per child?)                |             |
+| Price you have in mind (per center/mo? per classroom/mo? per child?)                | $149/center/mo, per location — confirmed |
 
 ## 0.3 The pain you're solving (in your words)
 

@@ -3,12 +3,7 @@ import { ClassicalButton } from '@/components/marketing/classical-button'
 
 export const metadata: Metadata = { title: 'Pricing' }
 
-/**
- * TODO(pricing): every number on this page is a placeholder. PROJECT-INSTRUCTIONS
- * Part 0.2 ("Price you have in mind") is still blank, so these are structure,
- * not a decision. Do not launch this page or quote these figures to a center
- * until Bernard sets them. `pnpm lint:release` fails on this marker.
- */
+/** Pricing confirmed by Bernard: $149/center/mo for a single location. */
 const PLANS = [
   {
     name: 'One center',

@@ -44,8 +44,8 @@ queue — a large fraction of the foundation — riding on one unanswered questi
 all three pilot sites, you save weeks. If it isn't, we've lost nothing by
 building it first. Either way, guessing is the expensive option.
 
-Also still blank and load-bearing: product pricing (0.2), which the marketing
-site currently fills with placeholders behind a `TODO(pricing)` marker.
+Product pricing (0.2) is now resolved: $149/center/mo, per location. See
+docs/OPEN-ITEMS.md #5.
 
 ---
 
