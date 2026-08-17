@@ -1,8 +1,15 @@
 import type { Metadata } from 'next'
 import { Plate } from '@/components/marketing/plate'
+import { SampleActivityPicker } from '@/components/marketing/sample-activity-picker'
 import { Tag } from '@/components/marketing/tag'
 
 export const metadata: Metadata = { title: 'How it works' }
+
+const SAMPLE_INDICATORS = [
+  { label: 'Recites numbers up to 20 in sequence', checked: true },
+  { label: 'Counts up to 10 objects, pointing to each one', checked: true },
+  { label: 'Sorts objects by size or color', checked: false },
+]
 
 export default function HowItWorksPage() {
   return (
@@ -48,10 +55,7 @@ export default function HowItWorksPage() {
           <em>&ldquo;Recites numbers up to 20 in sequence&rdquo;</em> — and the code goes on the
           plan behind it. She never types CD-MA1.4a. She never sees a tree of 700 codes.
         </p>
-        <Plate
-          placeholder="Drop a screenshot of the activity picker with codes attaching"
-          className="aspect-[16/10] w-full max-w-[520px]"
-        />
+        <SampleActivityPicker activity="Counting Bears" indicators={SAMPLE_INDICATORS} />
       </section>
 
       <hr className="mx-auto max-w-[820px] border-classical-divider" />
