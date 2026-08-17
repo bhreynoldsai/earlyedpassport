@@ -23,14 +23,13 @@ export default function WhyPage() {
       <section className="mx-auto flex max-w-[760px] flex-col gap-5 px-6 py-12">
         <p className="text-justify text-[17px] leading-[1.7]">
           Every Friday, in child care centers across Georgia, a teacher sits down with a paper
-          template and a binder of GELDS standards and tries to match a code to each activity she
-          has planned. It takes two hours. She is paid for eight and worked ten. Most weeks the
-          codes get written in on Monday morning, or the week before gets photocopied with a new
-          date.
+          template and a binder of standards and tries to match the right tag to each activity she
+          has planned. It takes two hours. She is paid for eight and worked ten. Most weeks the tags
+          get written in on Monday morning, or the week before gets photocopied with a new date.
         </p>
         <p className="text-justify text-[17px] leading-[1.7]">
-          Then a Pre-K Specialist visits, opens the binder, and scores the plan against the IQ Guide
-          for Planning Instruction. The activities were good. The children learned. The plan
+          Then a program specialist visits, opens the binder, and scores the plan against the
+          monitoring checklist. The activities were good. The children learned. The plan
           doesn&rsquo;t show it.
         </p>
         <p className="text-justify text-[17px] leading-[1.7]">
@@ -45,7 +44,7 @@ export default function WhyPage() {
           </p>
         </div>
         <p className="text-justify text-[17px] leading-[1.7]">
-          It keeps the codes attached to the work, and it keeps what a teacher knows attached to the
+          It keeps the tags attached to the work, and it keeps what a teacher knows attached to the
           child.
         </p>
         <p className="text-justify text-[17px] leading-[1.7]">

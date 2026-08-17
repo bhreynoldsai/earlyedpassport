@@ -13,16 +13,16 @@ describe('required registry keys', () => {
     )
   })
 
-  it('standards.attribution names DECAL', () => {
+  it('standards.attribution claims our own content, not a state agency’s', () => {
     expect(copy.standards.attribution).toBe(
-      'Standards content © Georgia Department of Early Care and Learning.'
+      'Developmental focus areas and activities are original to Early Ed Passport.'
     )
   })
 
-  it('never claims DECAL approval or endorsement', () => {
+  it('never mentions DECAL or GELDS anywhere', () => {
     const all = JSON.stringify(copy)
-    expect(all).not.toMatch(/DECAL[- ]approved/i)
-    expect(all).not.toMatch(/endorsed by DECAL/i)
+    expect(all).not.toMatch(/DECAL/i)
+    expect(all).not.toMatch(/GELDS/i)
   })
 })
 

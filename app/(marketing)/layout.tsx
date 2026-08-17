@@ -81,10 +81,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
       <footer className="border-t border-classical-divider bg-classical-surface">
         <div className="mx-auto flex max-w-5xl flex-col gap-2 px-6 py-8 text-xs text-classical-text/70">
           <p>{copy.standards.attribution}</p>
-          <p>
-            {copy.standards.notEndorsed} We are not affiliated with, endorsed by, or approved by
-            DECAL.
-          </p>
+          <p>{copy.standards.notEndorsed}</p>
           <p>
             Your center owns its data. You can export all of it at any time. Children never get
             accounts. Nothing here is sold, and nothing here is used to train anyone&rsquo;s model.

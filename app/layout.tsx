@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     template: `%s — ${copy.product.name}`,
   },
   description:
-    'Weekly lesson plans with GELDS codes already on them, and a child passport that follows a child from room to room. Built for Georgia child care centers.',
+    'Weekly lesson plans with your learning areas already tagged, and a child passport that follows a child from room to room. Built for Georgia child care centers.',
 }
 
 export const viewport: Viewport = {

@@ -17,7 +17,7 @@ interface SamplePlanProps {
  * and a stand-in for a real product screenshot until one exists (see
  * plate.tsx's TODO). Deliberately not presented as a screenshot of the live
  * app: a plan a center might actually run, one line per day, a plain-English
- * GELDS area next to every activity — the same shape the printed plan takes.
+ * learning area next to every activity — the same shape the printed plan takes.
  *
  * Content is passed in rather than hardcoded here: this file lives under
  * components/, which the copy registry lint scans (unlike app/(marketing),

@@ -6,7 +6,7 @@ interface TagProps {
 }
 
 /**
- * The five GELDS program areas are told apart by label, not color — one tag
+ * The five learning areas are told apart by label, not color — one tag
  * style throughout (brand sheet). `outline` is what the brand sheet actually
  * uses for that five-tag row; `accent`/`neutral` cover the sample-tag and
  * "+3 more" treatments elsewhere in the mockups.

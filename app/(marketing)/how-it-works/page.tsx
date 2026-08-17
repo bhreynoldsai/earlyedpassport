@@ -56,13 +56,13 @@ export default function HowItWorksPage() {
       <hr className="mx-auto max-w-[820px] border-classical-divider" />
 
       <section className="mx-auto max-w-[820px] px-6 py-12">
-        <h2 className="mb-2 text-2xl font-semibold">The codes attach themselves</h2>
+        <h2 className="mb-2 text-2xl font-semibold">The tags attach themselves</h2>
         <p className="mb-4 text-justify text-base leading-[1.65]">
-          When she adds an activity, the app suggests the GELDS indicators that activity usually
+          When she adds an activity, the app suggests the learning areas that activity usually
           covers, already ticked. She glances and moves on. If she wants a specific one she picks it
           by what it says in plain English —{' '}
-          <em>&ldquo;Recites numbers up to 20 in sequence&rdquo;</em> — and the code goes on the
-          plan behind it. She never types CD-MA1.4a. She never sees a tree of 700 codes.
+          <em>&ldquo;Recites numbers up to 20 in sequence&rdquo;</em> — and it goes on the plan
+          behind it. She never types a code. She never sees a tree of hundreds of them.
         </p>
         <SampleActivityPicker activity="Counting Bears" indicators={SAMPLE_INDICATORS} />
       </section>
@@ -90,13 +90,12 @@ export default function HowItWorksPage() {
       <section className="mx-auto max-w-[820px] px-6 py-12">
         <h2 className="mb-2 text-2xl font-semibold">Print and post</h2>
         <p className="mb-4 text-justify text-base leading-[1.65]">
-          One page per week, landscape, black on white, 11pt. GELDS code next to every activity.
-          Center, classroom, teacher, week and theme in the header. It is built to carry the
-          components DECAL asks for on a Pre-K plan — 6.5 instructional hours, clock times matching
-          your posted schedule, two daily read-alouds with titles and codes, a daily phonological
-          awareness activity, transitions, outdoor play, small groups, differentiation, planned
-          assessment. The parent copy is the same week with the codes stripped and a friendly line
-          about what the class is learning.
+          One page per week, landscape, black on white, 11pt. A learning-area tag next to every
+          activity. Center, classroom, teacher, week and theme in the header. It is built to carry
+          what a real day needs — clock times matching your posted schedule, two daily read-alouds
+          with titles, a daily phonological awareness activity, transitions, outdoor play, small
+          groups, differentiation, and where each child stands. The parent copy is the same week
+          with the tags stripped and a friendly line about what the class is learning.
         </p>
         <SamplePrintedPlan
           center="Sunshine Learning Center"

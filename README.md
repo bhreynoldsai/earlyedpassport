@@ -1,12 +1,13 @@
 # Early Ed Passport
 
-GELDS-native lesson planner and child page system for Georgia child care centers.
+Lesson planner and child page system for Georgia child care centers, built on
+our own learning-area framework.
 
 Two products, one database, one login:
 
 - **The lesson planner.** A teacher opens it Friday afternoon, picks next week's
-  theme, and in under 15 minutes has a complete weekly plan with the correct
-  Georgia GELDS codes attached to every activity, ready to print and post.
+  theme, and in under 15 minutes has a complete weekly plan with the right
+  learning-area tags attached to every activity, ready to print and post.
 - **The child passport.** One page per child that travels with her from the
   Infant room to Toddlers to Pre-K, so the new teacher isn't starting from zero.
 

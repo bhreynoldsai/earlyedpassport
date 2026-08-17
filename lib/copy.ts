@@ -18,14 +18,14 @@
 export const copy = {
   product: {
     name: 'Early Ed Passport',
-    tagline: 'Weekly lesson plans with GELDS codes already on them.',
+    tagline: 'Weekly lesson plans with your five learning areas already tagged.',
   },
 
   /** Required by spec. App footer AND every printed lesson plan. */
   standards: {
-    attribution: 'Standards content © Georgia Department of Early Care and Learning.',
-    /** Attribution is not endorsement. Never claim DECAL approval. */
-    notEndorsed: 'Built to match what DECAL asks for on a lesson plan.',
+    attribution: 'Developmental focus areas and activities are original to Early Ed Passport.',
+    /** Not tied to a single state's published standards — our own framework. */
+    notEndorsed: 'This is our own framework, built from real classroom activities.',
   },
 
   /** Required by spec. Top of the child Learning tab AND the passport footnote. */
