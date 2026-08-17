@@ -1,18 +1,16 @@
 import { ClassicalButton } from '@/components/marketing/classical-button'
-import { Plate } from '@/components/marketing/plate'
+import { SamplePassport } from '@/components/marketing/sample-passport'
 import { SamplePlan } from '@/components/marketing/sample-plan'
 
 /**
  * Home. Above the fold: the one sentence a director understands immediately,
  * the buyer and the state named, one primary button, one secondary.
  *
- * The hero shows a real sample plan (see components/marketing/sample-plan.tsx)
- * rather than a screenshot or stock photo — it's what the page's own "See a
- * sample plan" CTA promises, and DESIGN-BRIEF §8 rules out stock photography
- * and abstract stand-ins for this slot.
- *
- * TODO(marketing-assets): the passport plate below is still a placeholder —
- * a real screenshot of a child's passport page. See plate.tsx.
+ * Both plates on this page are rendered sample content (SamplePlan,
+ * SamplePassport) rather than a screenshot or stock photo — DESIGN-BRIEF §8
+ * rules out stock photography and abstract stand-ins for these slots, and a
+ * real screenshot doesn't exist yet. SamplePassport is a fictional example,
+ * never a real child's record — see its own doc comment.
  */
 
 const STEPS = [
@@ -36,6 +34,13 @@ const SAMPLE_PLAN_ROWS = [
   { day: 'Wed', activity: 'Story time: whose truck is this?', domain: 'Talking & Reading' },
   { day: 'Thu', activity: 'Art: community mural', domain: 'How They Learn' },
   { day: 'Fri', activity: 'How do helpers get to work?', domain: 'Thinking & Learning' },
+]
+
+const SAMPLE_PASSPORT_FIELDS = [
+  { label: "Can't have", value: 'Peanuts, tree nuts' },
+  { label: 'Pickup', value: 'Grandmother, Thursdays only' },
+  { label: 'Working on', value: 'Counting to 20, sharing turns' },
+  { label: 'From her last teacher', value: 'Loves the sensory bin — starts there most mornings' },
 ]
 
 const CHECKLIST = [
@@ -137,11 +142,7 @@ export default function HomePage() {
               page. The teacher who had her signs it off after the move, not in a hallway.
             </p>
           </div>
-          <Plate
-            placeholder="Drop a screenshot of a child's passport page"
-            tone="accent-300"
-            className="aspect-[4/3] w-full shadow-classical-lg"
-          />
+          <SamplePassport name="Amara" pronunciation="uh-MAR-uh" fields={SAMPLE_PASSPORT_FIELDS} />
         </div>
       </section>
 

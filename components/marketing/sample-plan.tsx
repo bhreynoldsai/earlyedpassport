@@ -25,7 +25,7 @@ interface SamplePlanProps {
  */
 export function SamplePlan({ weekOf, theme, rows }: SamplePlanProps) {
   return (
-    <div className="flex flex-col gap-4 rounded-classical-md border border-classical-divider bg-classical-surface p-6 shadow-classical-md">
+    <div className="flex flex-col gap-4 rounded-classical-md border border-classical-divider bg-classical-surface p-6 text-classical-text shadow-classical-md">
       <div>
         <p className="text-[11px] tracking-[0.1em] text-classical-accent uppercase">
           Week of {weekOf}
