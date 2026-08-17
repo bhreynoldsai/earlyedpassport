@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import type { Metadata } from 'next'
+import { ClassicalButton } from '@/components/marketing/classical-button'
 
 export const metadata: Metadata = { title: 'Pricing' }
 
@@ -21,6 +21,7 @@ const PLANS = [
       'Child records, passports and forms tracking',
       'One-click export of everything you have',
     ],
+    tinted: false,
   },
   {
     name: 'Multiple centers',
@@ -31,78 +32,108 @@ const PLANS = [
       'One dashboard across all of them',
       'Help moving your existing records in',
     ],
+    tinted: true,
+  },
+]
+
+const FAQ = [
+  {
+    q: 'What happens to our data if we leave?',
+    a: 'You take it. Everything exports as spreadsheets and PDFs, including the documents you uploaded. That is in the contract, not just on this page.',
+  },
+  {
+    q: 'Do you replace Work Sampling Online?',
+    a: 'No. Georgia Pre-K classrooms use WSO and we do not try to be your assessment system. We make the evidence easier to gather and easier to copy across.',
+  },
+  {
+    q: 'Is this DECAL approved?',
+    a: 'No — DECAL does not approve products. Our plan template is built to carry the components DECAL requires, and we quote the GELDS standards with attribution.',
   },
 ]
 
 export default function PricingPage() {
   return (
-    <div className="mx-auto max-w-4xl px-4 py-12">
-      <h1 className="text-[length:var(--text-display)] font-semibold">Pricing</h1>
-      <p className="mt-4 text-[length:var(--text-body-lg)] text-text-muted">
-        We charge the center, once a month. We never charge families, and we never touch your
-        tuition.
-      </p>
-
-      <div className="mt-10 grid gap-6 md:grid-cols-2">
-        {PLANS.map((plan) => (
-          <div
-            key={plan.name}
-            className="flex flex-col gap-4 rounded-md border border-border bg-surface p-6 shadow-[var(--shadow-card)]"
-          >
-            <h2 className="text-[length:var(--text-h2)] font-semibold">{plan.name}</h2>
-            <p>
-              <span className="text-[length:var(--text-display)] font-semibold">{plan.price}</span>
-              <span className="ml-2 text-[length:var(--text-small)] text-text-muted">
-                {plan.unit}
-              </span>
-            </p>
-            <ul className="flex flex-col gap-2">
-              {plan.lines.map((line) => (
-                <li key={line} className="flex gap-3 text-[length:var(--text-body)]">
-                  <span aria-hidden className="text-good">
-                    ✓
-                  </span>
-                  <span>{line}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-10 rounded-md border border-border bg-attention-soft p-6">
-        <h2 className="text-[length:var(--text-h2)] font-semibold">Before you ask</h2>
-        <dl className="mt-4 flex flex-col gap-4 text-[length:var(--text-body)]">
-          <div>
-            <dt className="font-semibold">What happens to our data if we leave?</dt>
-            <dd className="text-text-muted">
-              You take it. Everything exports as spreadsheets and PDFs, including the documents you
-              uploaded. That is in the contract, not just on this page.
-            </dd>
-          </div>
-          <div>
-            <dt className="font-semibold">Do you replace Work Sampling Online?</dt>
-            <dd className="text-text-muted">
-              No. Georgia Pre-K classrooms use WSO and we do not try to be your assessment system.
-              We make the evidence easier to gather and easier to copy across.
-            </dd>
-          </div>
-          <div>
-            <dt className="font-semibold">Is this DECAL approved?</dt>
-            <dd className="text-text-muted">
-              No — DECAL does not approve products. Our plan template is built to carry the
-              components DECAL requires, and we quote the GELDS standards with attribution.
-            </dd>
-          </div>
-        </dl>
-      </div>
-
-      <Link
-        href="/demo"
-        className="mt-10 inline-flex min-h-[var(--tap-primary)] items-center rounded-sm bg-accent px-6 text-[length:var(--text-body-lg)] font-semibold text-white hover:bg-accent-hover"
+    <>
+      <div
+        style={{
+          background:
+            'linear-gradient(180deg, var(--color-classical-accent-100), var(--color-classical-bg) 70%)',
+        }}
       >
-        Book a demo
-      </Link>
-    </div>
+        <section className="mx-auto max-w-[820px] px-6 py-16 md:py-20">
+          <p className="mb-3 text-xs tracking-[0.1em] text-classical-accent-700 uppercase">
+            Pricing
+          </p>
+          <h1 className="mb-4 font-normal text-[clamp(30px,4vw,44px)] leading-[1.1]">Pricing</h1>
+          <p className="text-lg text-classical-text/80">
+            We charge the center, once a month. We never charge families, and we never touch your
+            tuition.
+          </p>
+        </section>
+      </div>
+
+      <section className="mx-auto max-w-[940px] px-6 py-12">
+        <div className="grid gap-6 md:grid-cols-2">
+          {PLANS.map((plan) => (
+            <div
+              key={plan.name}
+              className={
+                plan.tinted
+                  ? 'flex flex-col gap-3 rounded-classical-md bg-classical-accent-100 p-6 shadow-classical-sm'
+                  : 'flex flex-col gap-3 rounded-classical-md bg-classical-surface p-6 shadow-classical-md'
+              }
+            >
+              <span className="text-[10px] tracking-[0.1em] text-classical-accent uppercase">
+                {plan.name}
+              </span>
+              <div className="flex items-baseline gap-2">
+                <span className="font-classical-heading text-[38px] font-semibold">
+                  {plan.price}
+                </span>
+                {plan.name === 'One center' && (
+                  <span className="text-sm text-classical-text/60">{plan.unit}</span>
+                )}
+              </div>
+              {plan.name !== 'One center' && (
+                <p className="text-sm text-classical-text/70">{plan.unit}</p>
+              )}
+              <ul className="mt-2 flex flex-col gap-2 text-[15px]">
+                {plan.lines.map((line) => (
+                  <li key={line} className="flex gap-2">
+                    <span className="text-classical-accent-700">✓</span>
+                    {line}
+                  </li>
+                ))}
+              </ul>
+              <ClassicalButton
+                href="/demo"
+                variant={plan.tinted ? 'secondary' : 'primary'}
+                block
+                className="mt-4"
+              >
+                Book a demo
+              </ClassicalButton>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <hr className="mx-auto max-w-[820px] border-classical-divider" />
+
+      <section className="mx-auto max-w-[820px] px-6 py-12">
+        <h2 className="mb-4 text-2xl font-semibold">Before you ask</h2>
+        <div className="flex flex-col gap-4">
+          {FAQ.map((item) => (
+            <div key={item.q}>
+              <h3 className="mb-1.5 text-[17px] font-semibold">{item.q}</h3>
+              <p className="text-[15px] leading-relaxed text-classical-text/80">{item.a}</p>
+            </div>
+          ))}
+        </div>
+        <ClassicalButton href="/demo" className="mt-6">
+          Book a demo
+        </ClassicalButton>
+      </section>
+    </>
   )
 }

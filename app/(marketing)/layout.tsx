@@ -1,58 +1,85 @@
 import Link from 'next/link'
+import type { Route } from 'next'
+import { Cormorant_Garamond, Lora } from 'next/font/google'
 import { copy } from '@/lib/copy'
+import { cn } from '@/lib/utils'
+import { LogoMark } from '@/components/marketing/logo-mark'
+import { ClassicalButton } from '@/components/marketing/classical-button'
 
 /**
  * Marketing site shell. Five pages, no more (DESIGN-BRIEF §8).
  *
- * Same tokens, same type scale, same teal as the product — a director who books
- * a demo has to recognise the app when she sees it.
+ * Redesigned to the "Classical" design system (design handoff, 2026): warm
+ * gold accent, Cormorant Garamond + Lora, editorial/outline-first — see
+ * app/globals.css's .classical block for the token layer. This is scoped to
+ * the marketing route group on purpose: the in-app product UI keeps its
+ * teal/Inter tokens untouched (out of scope for this handoff — "decide
+ * separately with the team" whether it adopts this palette later).
  *
  * Long-form marketing prose lives inline in these pages rather than in
  * lib/copy.ts. The copy registry governs the product UI, where strings are
  * reused and translated; a sales paragraph is neither.
  */
 
-const NAV = [
+const cormorantGaramond = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['400', '600'],
+  variable: '--classical-font-heading',
+  display: 'swap',
+})
+
+const lora = Lora({
+  subsets: ['latin'],
+  weight: ['400', '600'],
+  variable: '--classical-font-body',
+  display: 'swap',
+})
+
+const NAV: { href: Route; label: string }[] = [
   { href: '/how-it-works', label: 'How it works' },
   { href: '/pricing', label: 'Pricing' },
   { href: '/why', label: 'Why we built it' },
-] as const
+]
 
 export default function MarketingLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex min-h-dvh flex-col">
-      <header className="border-b border-border bg-surface">
+    <div
+      className={cn(
+        'classical flex min-h-dvh flex-col bg-classical-bg text-classical-text',
+        cormorantGaramond.variable,
+        lora.variable
+      )}
+    >
+      <header className="border-b border-classical-divider">
         <nav
-          className="mx-auto flex max-w-5xl flex-wrap items-center gap-4 px-4 py-4"
+          className="mx-auto flex max-w-5xl flex-wrap items-center gap-6 px-6 py-4"
           aria-label="Main"
         >
-          <Link href="/" className="text-[length:var(--text-h2)] font-semibold text-accent-text">
-            {copy.product.name}
+          <Link href="/" className="mr-auto flex items-center gap-2.5">
+            <LogoMark className="h-[26px] w-[26px] shrink-0 text-classical-accent" />
+            <span className="font-classical-heading text-lg font-semibold text-classical-text">
+              {copy.product.name}
+            </span>
           </Link>
-          <div className="ml-auto flex flex-wrap items-center gap-4">
+          <div className="flex flex-wrap items-center gap-6">
             {NAV.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-[length:var(--text-body)] text-text-muted hover:text-text"
+                className="text-sm text-classical-text hover:text-classical-accent-700"
               >
                 {item.label}
               </Link>
             ))}
-            <Link
-              href="/demo"
-              className="inline-flex min-h-[var(--tap-min)] items-center rounded-sm bg-accent px-4 text-[length:var(--text-body)] font-semibold text-white hover:bg-accent-hover"
-            >
-              Book a demo
-            </Link>
+            <ClassicalButton href="/demo">Book a demo</ClassicalButton>
           </div>
         </nav>
       </header>
 
       <main className="flex-1">{children}</main>
 
-      <footer className="border-t border-border bg-surface">
-        <div className="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-8 text-[length:var(--text-small)] text-text-muted">
+      <footer className="border-t border-classical-divider bg-classical-surface">
+        <div className="mx-auto flex max-w-5xl flex-col gap-2 px-6 py-8 text-xs text-classical-text/70">
           <p>{copy.standards.attribution}</p>
           <p>
             {copy.standards.notEndorsed} We are not affiliated with, endorsed by, or approved by
@@ -62,7 +89,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
             Your center owns its data. You can export all of it at any time. Children never get
             accounts. Nothing here is sold, and nothing here is used to train anyone&rsquo;s model.
           </p>
-          <p className="text-text-faint">
+          <p className="text-classical-text/50">
             © {new Date(Date.UTC(2026, 0, 1)).getUTCFullYear()} {copy.product.name}
           </p>
         </div>
