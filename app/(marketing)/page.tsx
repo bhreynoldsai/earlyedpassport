@@ -20,11 +20,11 @@ const STEPS = [
   },
   {
     step: 'Tap activities',
-    body: 'Pick from a library written for your age band. The GELDS codes attach behind the scenes — your teacher never types one.',
+    body: 'Pick from a library written for your age band. The learning-area tags attach behind the scenes — your teacher never types anything.',
   },
   {
     step: 'Print and post',
-    body: 'One page per week, codes next to every activity, ready for the wall and for the monitoring binder.',
+    body: 'One page per week, a learning-area tag next to every activity, ready for the wall and for the monitoring binder.',
   },
 ]
 
@@ -68,12 +68,12 @@ export default function HomePage() {
             </p>
             <h1 className="mb-4 font-normal text-[clamp(34px,4.6vw,52px)] leading-[1.08]">
               Weekly lesson plans with{' '}
-              <span className="text-classical-accent-700">GELDS codes</span> already on them — in 15
-              minutes, not 2 hours.
+              <span className="text-classical-accent-700">every learning area</span> already tagged
+              — in 15 minutes, not 2 hours.
             </h1>
             <p className="mb-6 max-w-[46ch] text-lg text-classical-text/80">
-              Your teacher picks a theme on Friday afternoon and prints a plan that carries every
-              component DECAL asks for.
+              Your teacher picks a theme on Friday afternoon and prints a plan that covers
+              everything your center tracks.
             </p>
             <div className="flex flex-wrap gap-3">
               <ClassicalButton href="/demo" className="min-h-12 px-6 text-base">

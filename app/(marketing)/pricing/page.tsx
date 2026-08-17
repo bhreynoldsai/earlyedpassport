@@ -3,12 +3,7 @@ import { ClassicalButton } from '@/components/marketing/classical-button'
 
 export const metadata: Metadata = { title: 'Pricing' }
 
-/**
- * TODO(pricing): every number on this page is a placeholder. PROJECT-INSTRUCTIONS
- * Part 0.2 ("Price you have in mind") is still blank, so these are structure,
- * not a decision. Do not launch this page or quote these figures to a center
- * until Bernard sets them. `pnpm lint:release` fails on this marker.
- */
+/** Pricing confirmed by Bernard: $149/center/mo for a single location. */
 const PLANS = [
   {
     name: 'One center',
@@ -46,8 +41,8 @@ const FAQ = [
     a: 'No. Georgia Pre-K classrooms use WSO and we do not try to be your assessment system. We make the evidence easier to gather and easier to copy across.',
   },
   {
-    q: 'Is this DECAL approved?',
-    a: 'No — DECAL does not approve products. Our plan template is built to carry the components DECAL requires, and we quote the GELDS standards with attribution.',
+    q: 'Whose standards is this based on?',
+    a: 'Our own. We built the learning areas and activity library from real classroom practice, not a copy of any single state’s published standards.',
   },
 ]
 

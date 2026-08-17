@@ -27,6 +27,19 @@ export function canManageStaff(role: StaffRole | null | undefined): boolean {
 }
 
 /**
+ * Mirrors `child_insert` and `enrollment_insert` in migration 0004_rls.sql,
+ * both gated on `auth_is_director(center_id)`. The role set is identical to
+ * `canManageStaff`'s today, but named separately on purpose — "who may add a
+ * child" and "who may add a teacher" are two different rules that happen to
+ * agree, not one rule wearing two names. If the database ever splits them,
+ * this is where that split shows up.
+ */
+export function canEnrollChild(role: StaffRole | null | undefined): boolean {
+  if (!role) return false
+  return STAFF_MANAGER_ROLES.includes(role)
+}
+
+/**
  * Room assignments are meaningful only for the two classroom-scoped roles.
  * Mirrors the comment on `staff.classroom_ids` in migration 0002: "Ignored
  * for director+." Enforcing that here means an invite form cannot silently

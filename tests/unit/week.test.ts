@@ -4,6 +4,7 @@ import {
   isWeekStart,
   nextWeek,
   previousWeek,
+  todayUtc,
   weekDates,
   weekEndInstant,
   weekStartFor,
@@ -105,5 +106,15 @@ describe('isWeekStart', () => {
 
   it('rejects a malformed string', () => {
     expect(isWeekStart('next week')).toBe(false)
+  })
+})
+
+describe('todayUtc', () => {
+  it('matches the real UTC calendar date', () => {
+    expect(todayUtc()).toBe(new Date().toISOString().slice(0, 10))
+  })
+
+  it('is a YYYY-MM-DD string', () => {
+    expect(todayUtc()).toMatch(/^\d{4}-\d{2}-\d{2}$/)
   })
 })

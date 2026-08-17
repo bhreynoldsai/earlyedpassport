@@ -18,14 +18,14 @@
 export const copy = {
   product: {
     name: 'Early Ed Passport',
-    tagline: 'Weekly lesson plans with GELDS codes already on them.',
+    tagline: 'Weekly lesson plans with your five learning areas already tagged.',
   },
 
   /** Required by spec. App footer AND every printed lesson plan. */
   standards: {
-    attribution: 'Standards content © Georgia Department of Early Care and Learning.',
-    /** Attribution is not endorsement. Never claim DECAL approval. */
-    notEndorsed: 'Built to match what DECAL asks for on a lesson plan.',
+    attribution: 'Developmental focus areas and activities are original to Early Ed Passport.',
+    /** Not tied to a single state's published standards — our own framework. */
+    notEndorsed: 'This is our own framework, built from real classroom activities.',
   },
 
   /** Required by spec. Top of the child Learning tab AND the passport footnote. */
@@ -124,6 +124,25 @@ export const copy = {
     allergy: 'Allergy',
     custody: 'Pickup rules — read this first',
     doNotRelease: 'Do not release to',
+  },
+
+  /** The Basics tab only — see lib/child/schemas.ts for why People, Health,
+   *  Learning and Notes (the rest of `child` above) aren't collected yet. */
+  children: {
+    title: 'Children',
+    addChild: 'Add a child',
+    empty: 'No children yet.',
+    firstName: 'First name',
+    lastName: 'Last name',
+    preferredName: 'Goes by',
+    dateOfBirth: 'Date of birth',
+    homeLanguage: 'Home language',
+    classroom: 'Room',
+    pickClassroom: 'Pick a room',
+    save: 'Add this child',
+    saving: 'Saving…',
+    onlyDirectorsCanAdd: 'Only a director can add a child.',
+    noRoom: 'Not enrolled in a room',
   },
 
   compliance: {

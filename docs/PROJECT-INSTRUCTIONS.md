@@ -1,4 +1,4 @@
-# Project Instructions — GELDS Lesson Planner + Child CRM
+# Project Instructions — Lesson Planner + KRM (Kid Relationship Manager)
 
 **Working name:** _(fill in)_
 **Owner:** Bernard — bernard@truenorth-inc.com
@@ -26,14 +26,14 @@
 
 ## 0.2 Who you're selling to
 
-| Field                                                                               | Your answer |
-| ----------------------------------------------------------------------------------- | ----------- |
-| Primary customer (center director? owner? franchise group?)                         |             |
-| Center size you're aiming at (# classrooms, # children)                             |             |
-| Georgia-only at launch, or other states later?                                      |             |
-| Are these Georgia Pre-K funded classrooms, private pay, Head Start, CAPS, or a mix? |             |
-| Are your targets Quality Rated participants?                                        |             |
-| Price you have in mind (per center/mo? per classroom/mo? per child?)                |             |
+| Field                                                                               | Your answer                              |
+| ----------------------------------------------------------------------------------- | ---------------------------------------- |
+| Primary customer (center director? owner? franchise group?)                         |                                          |
+| Center size you're aiming at (# classrooms, # children)                             |                                          |
+| Georgia-only at launch, or other states later?                                      |                                          |
+| Are these Georgia Pre-K funded classrooms, private pay, Head Start, CAPS, or a mix? |                                          |
+| Are your targets Quality Rated participants?                                        |                                          |
+| Price you have in mind (per center/mo? per classroom/mo? per child?)                | $149/center/mo, per location — confirmed |
 
 ## 0.3 The pain you're solving (in your words)
 
@@ -51,10 +51,10 @@ Mark each `MUST`, `LATER`, or `NO`.
 
 | Feature                                                    | v1? |
 | ---------------------------------------------------------- | --- |
-| GELDS-tagged weekly lesson plan builder                    |     |
+| Learning-area-tagged weekly lesson plan builder            |     |
 | Printable / postable lesson plan (parent-facing wall copy) |     |
 | Activity library teachers can search and drop in           |     |
-| Child profile with GELDS-aligned observations              |     |
+| Child profile with learning-area-aligned observations      |     |
 | Child "passport" that follows them room to room            |     |
 | Photo/video observation capture from phone                 |     |
 | Attendance / sign-in-out                                   |     |
@@ -84,9 +84,9 @@ Mark each `MUST`, `LATER`, or `NO`.
 
 Two products that share one database and one login:
 
-**A. The Lesson Planner** — a teacher opens it Friday afternoon, picks next week's theme, and in under 15 minutes has a complete weekly lesson plan with the correct Georgia GELDS standard codes attached to every activity, ready to print and post.
+**A. The Lesson Planner** — a teacher opens it Friday afternoon, picks next week's theme, and in under 15 minutes has a complete weekly lesson plan with the right learning-area tags attached to every activity, ready to print and post. Tags come from our own framework, not a copy of any state's published standards.
 
-**B. The Child CRM** — one record per child that holds who they are, who can pick them up, what they can't eat, what they're working on, and what a teacher needs to know. It travels with the child when they move from the Infant room to Toddlers to Pre-K, so the new teacher isn't starting from zero.
+**B. KRM (Kid Relationship Manager)** — one record per child that holds who they are, who can pick them up, what they can't eat, what they're working on, and what a teacher needs to know. It travels with the child when they move from the Infant room to Toddlers to Pre-K, so the new teacher isn't starting from zero. Shipped in the app as "the passport" — KRM is the internal/spec name for this product half, not customer-facing branding.
 
 Delivered as a **responsive web app** (works in a phone browser, a tablet, and a desktop) plus a **marketing website**. Not a native app in v1 — an installable web app (PWA) covers the phone case without app store friction.
 

@@ -1,11 +1,14 @@
+import Link from 'next/link'
 import { copy } from '@/lib/copy'
 import { getStaffContext } from '@/lib/auth/session'
 import { SignOutButton } from '@/components/auth/sign-out-button'
 
 /**
- * BUILD-INSTRUCTIONS §3: `/(app)` is the authenticated product. No nav here
- * yet — My Room / Plans / Center are Phase 1+ routes that don't exist, and a
- * nav bar pointing at nothing is worse than no nav bar.
+ * BUILD-INSTRUCTIONS §3: `/(app)` is the authenticated product. Nav here is
+ * still deliberately minimal — My Room / Plans / Center (the full copy.nav
+ * set) are Phase 1+ routes that don't exist yet, and a nav bar pointing at
+ * nothing is worse than no nav bar. /children is real (child/passport MVP),
+ * so it gets a link; the rest waits until its route does too.
  *
  * No redirect-if-signed-out here: middleware already refuses an
  * unauthenticated request before it ever reaches this layout (`(app)` routes
@@ -22,7 +25,17 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         <span className="text-[length:var(--text-h2)] font-semibold text-accent-text">
           {copy.product.name}
         </span>
-        <SignOutButton />
+        <nav className="flex items-center gap-4">
+          {context && (
+            <Link
+              href="/children"
+              className="text-[length:var(--text-body)] text-text hover:text-accent-text"
+            >
+              {copy.children.title}
+            </Link>
+          )}
+          <SignOutButton />
+        </nav>
       </header>
       <main className="mx-auto w-full max-w-2xl flex-1 px-4 py-8">
         {context ? (
