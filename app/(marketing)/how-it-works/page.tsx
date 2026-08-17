@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import { Plate } from '@/components/marketing/plate'
 import { SampleActivityPicker } from '@/components/marketing/sample-activity-picker'
+import { SamplePrintedPlan } from '@/components/marketing/sample-printed-plan'
 import { Tag } from '@/components/marketing/tag'
 
 export const metadata: Metadata = { title: 'How it works' }
@@ -9,6 +9,15 @@ const SAMPLE_INDICATORS = [
   { label: 'Recites numbers up to 20 in sequence', checked: true },
   { label: 'Counts up to 10 objects, pointing to each one', checked: true },
   { label: 'Sorts objects by size or color', checked: false },
+]
+
+/** Same week as the Home page's sample plan hero — one plan, shown twice: as it's built, and as it prints. */
+const SAMPLE_PRINTED_DAYS = [
+  { day: 'Mon', activity: 'Morning circle: meet a helper', domain: 'Feelings & Friends' },
+  { day: 'Tue', activity: 'Building blocks: our town', domain: 'Moving & Growing' },
+  { day: 'Wed', activity: 'Story time: whose truck is this?', domain: 'Talking & Reading' },
+  { day: 'Thu', activity: 'Art: community mural', domain: 'How They Learn' },
+  { day: 'Fri', activity: 'How do helpers get to work?', domain: 'Thinking & Learning' },
 ]
 
 export default function HowItWorksPage() {
@@ -89,10 +98,13 @@ export default function HowItWorksPage() {
           assessment. The parent copy is the same week with the codes stripped and a friendly line
           about what the class is learning.
         </p>
-        <Plate
-          placeholder="Drop the printed landscape weekly plan"
-          tone="accent-300"
-          className="aspect-[16/10] w-full max-w-[600px]"
+        <SamplePrintedPlan
+          center="Sunshine Learning Center"
+          room="Pre-K A"
+          teacher="Ms. Rivera"
+          weekOf="Aug 17"
+          theme="Community Helpers"
+          days={SAMPLE_PRINTED_DAYS}
         />
       </section>
 
