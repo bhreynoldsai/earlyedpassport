@@ -126,6 +126,25 @@ export const copy = {
     doNotRelease: 'Do not release to',
   },
 
+  /** The Basics tab only — see lib/child/schemas.ts for why People, Health,
+   *  Learning and Notes (the rest of `child` above) aren't collected yet. */
+  children: {
+    title: 'Children',
+    addChild: 'Add a child',
+    empty: 'No children yet.',
+    firstName: 'First name',
+    lastName: 'Last name',
+    preferredName: 'Goes by',
+    dateOfBirth: 'Date of birth',
+    homeLanguage: 'Home language',
+    classroom: 'Room',
+    pickClassroom: 'Pick a room',
+    save: 'Add this child',
+    saving: 'Saving…',
+    onlyDirectorsCanAdd: 'Only a director can add a child.',
+    noRoom: 'Not enrolled in a room',
+  },
+
   compliance: {
     missing: 'Not here yet',
     appointmentCard: 'Appointment card',

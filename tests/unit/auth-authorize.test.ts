@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest'
-import { canManageStaff, roleUsesClassrooms, type StaffRole } from '../../lib/auth/authorize'
+import {
+  canEnrollChild,
+  canManageStaff,
+  roleUsesClassrooms,
+  type StaffRole,
+} from '../../lib/auth/authorize'
 
 /**
  * This is the one piece of the invite flow the database cannot check for us —
@@ -22,6 +27,30 @@ describe('canManageStaff', () => {
 
   it('refuses undefined the same way', () => {
     expect(canManageStaff(undefined)).toBe(false)
+  })
+})
+
+/**
+ * The other piece the database can't be trusted to explain on its own —
+ * child_insert and enrollment_insert (migration 0004_rls.sql) already
+ * enforce this in Postgres, but a denied insert should read as a plain
+ * sentence, not a policy-violation error surfaced from Supabase.
+ */
+describe('canEnrollChild', () => {
+  it.each<StaffRole>(['director', 'org_admin'])('lets %s add a child', (role) => {
+    expect(canEnrollChild(role)).toBe(true)
+  })
+
+  it.each<StaffRole>(['teacher', 'lead_teacher'])('refuses %s', (role) => {
+    expect(canEnrollChild(role)).toBe(false)
+  })
+
+  it('refuses null', () => {
+    expect(canEnrollChild(null)).toBe(false)
+  })
+
+  it('refuses undefined', () => {
+    expect(canEnrollChild(undefined)).toBe(false)
   })
 })
 

@@ -81,6 +81,18 @@ export function formatWeekLabel(weekStart: WeekStart, timeZone: string): string 
   return formatInTimeZone(weekStartInstant(weekStart, timeZone), timeZone, 'MMM d')
 }
 
+/**
+ * Today's calendar date in UTC, as YYYY-MM-DD — for date fields where the
+ * few hours of skew around a center's local midnight genuinely don't matter
+ * (an enrollment start date, a child's age in months), unlike week
+ * boundaries, which do — that's what `weekStartFor` and a real timezone are
+ * for. Exists so callers outside this file never need their own bare
+ * `new Date()`; ESLint enforces that everywhere except here.
+ */
+export function todayUtc(): WeekStart {
+  return formatInTimeZone(new Date(), 'UTC', WEEK_START_FORMAT)
+}
+
 export function isWeekStart(value: string): boolean {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false
   try {
