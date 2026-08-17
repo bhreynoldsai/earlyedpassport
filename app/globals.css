@@ -161,6 +161,38 @@
   --spacing-8: var(--space-8);
   --spacing-12: var(--space-12);
   --spacing-16: var(--space-16);
+
+  /* Classical — see the scoped .classical block below for why these exist
+     as a separate namespace instead of overriding the product tokens above. */
+  --color-classical-bg: var(--classical-bg);
+  --color-classical-surface: var(--classical-surface);
+  --color-classical-text: var(--classical-text);
+  --color-classical-divider: var(--classical-divider);
+
+  --color-classical-accent: var(--classical-accent);
+  --color-classical-accent-100: var(--classical-accent-100);
+  --color-classical-accent-200: var(--classical-accent-200);
+  --color-classical-accent-300: var(--classical-accent-300);
+  --color-classical-accent-400: var(--classical-accent-400);
+  --color-classical-accent-500: var(--classical-accent-500);
+  --color-classical-accent-600: var(--classical-accent-600);
+  --color-classical-accent-700: var(--classical-accent-700);
+  --color-classical-accent-800: var(--classical-accent-800);
+  --color-classical-accent-900: var(--classical-accent-900);
+
+  --color-classical-neutral-100: var(--classical-neutral-100);
+  --color-classical-neutral-900: var(--classical-neutral-900);
+
+  --font-classical-heading: var(--classical-font-heading);
+  --font-classical-body: var(--classical-font-body);
+
+  --radius-classical-sm: var(--classical-radius-sm);
+  --radius-classical-md: var(--classical-radius-md);
+  --radius-classical-lg: var(--classical-radius-lg);
+
+  --shadow-classical-sm: var(--classical-shadow-sm);
+  --shadow-classical-md: var(--classical-shadow-md);
+  --shadow-classical-lg: var(--classical-shadow-lg);
 }
 
 @layer base {
@@ -214,6 +246,90 @@
     min-height: var(--tap-min);
     min-width: var(--tap-min);
   }
+}
+
+/* --------------------------------------------------------------------------
+   CLASSICAL — marketing site only. Design-system redesign handoff.
+
+   Scoped under .classical (applied to the app/(marketing) route group's root
+   wrapper), never :root: the in-app product UI keeps its teal/Inter tokens
+   exactly as they are. The handoff's own scope is the 5 public marketing
+   pages, the logo and the brand sheet — "decide separately with the team"
+   on whether the in-app UI adopts this palette later.
+
+   --classical-font-heading / --classical-font-body are NOT declared here —
+   they come from next/font/google in app/(marketing)/layout.tsx, which sets
+   them as CSS custom properties on the same wrapper this class is applied
+   to.
+   -------------------------------------------------------------------------- */
+.classical {
+  --classical-bg: #f3f2f2;
+  --classical-surface: #eae9e9;
+  --classical-text: #201f1d;
+  --classical-divider: color-mix(in srgb, #201f1d 16%, transparent);
+
+  /* Mono accent scheme — the design system's own machine-derived "accent-2"
+     is a near-duplicate stand-in kept only so both sets resolve upstream;
+     the readme says to treat it as one role, so only one ramp ships here. */
+  --classical-accent: #b68235;
+  --classical-accent-100: #fff3e4;
+  --classical-accent-200: #ffe3bf;
+  --classical-accent-300: #facb8d;
+  --classical-accent-400: #e1ad66;
+  --classical-accent-500: #c28d41;
+  --classical-accent-600: #a06f24;
+  --classical-accent-700: #7d5411;
+  --classical-accent-800: #5a3b0a;
+  --classical-accent-900: #3a270d;
+
+  /* Only the two neutral steps the marketing pages actually use (the deep
+     near-black band and its text) — not the full 9-step ramp. */
+  --classical-neutral-100: #f8f4f4;
+  --classical-neutral-900: #2d2b2b;
+
+  /* Sharper corners than the product's soft/rounded style is deliberate —
+     "editorial", not "friendly app". */
+  --classical-radius-sm: 2px;
+  --classical-radius-md: 4px;
+  --classical-radius-lg: 7px;
+
+  --classical-shadow-sm: 0 1px 2px color-mix(in srgb, #2d2b2b 14%, transparent);
+  --classical-shadow-md: 0 3px 10px color-mix(in srgb, #2d2b2b 16%, transparent);
+  --classical-shadow-lg: 0 12px 32px color-mix(in srgb, #2d2b2b 22%, transparent);
+}
+
+/* Type family + heading tracking, scoped the same way. Weight is set per
+   element with a Tailwind class (font-normal for display sizes, font-semibold
+   for section heads — see the brand sheet: "the bigger the text, the lighter
+   it sets") rather than here, so a utility class can always override it —
+   a bare `.classical h1 { font-weight }` rule would out-specificity any
+   Tailwind weight utility applied to the same h1. */
+.classical {
+  font-family: var(--font-classical-body);
+}
+.classical h1,
+.classical h2,
+.classical h3,
+.classical h4 {
+  font-family: var(--font-classical-heading);
+  letter-spacing: -0.015em;
+}
+.classical a {
+  color: var(--color-classical-accent-700);
+  text-decoration-color: color-mix(in srgb, var(--color-classical-accent-700) 40%, transparent);
+}
+.classical a:hover {
+  color: var(--color-classical-accent-900);
+}
+.classical nav a {
+  text-decoration: none;
+}
+.classical :focus-visible {
+  outline: 2px solid var(--color-classical-accent);
+  outline-offset: 2px;
+}
+.classical ::selection {
+  background: color-mix(in srgb, var(--color-classical-accent) 30%, transparent);
 }
 
 /* --------------------------------------------------------------------------
