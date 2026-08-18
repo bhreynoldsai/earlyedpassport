@@ -83,7 +83,7 @@ describe.skipIf(!hasDatabase)('table privileges match the policies', () => {
   })
 
   it('finds every table (a schema that failed to build would vacuously pass)', () => {
-    expect(baseTables.length).toBe(12)
+    expect(baseTables.length).toBe(15)
   })
 
   it.each([
@@ -98,6 +98,9 @@ describe.skipIf(!hasDatabase)('table privileges match the policies', () => {
     'gelds_strand',
     'gelds_standard',
     'gelds_indicator',
+    'compass_pathway',
+    'compass_milestone_group',
+    'compass_skill_marker',
     'audit_log',
   ])('%s grants exactly the verbs it has policies for', (table) => {
     const granted = [...(grants.get(table) ?? [])].sort()

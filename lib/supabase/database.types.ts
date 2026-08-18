@@ -260,6 +260,110 @@ export type Database = {
           },
         ]
       }
+      compass_milestone_group: {
+        Row: {
+          framework_version: string
+          group_description: string
+          group_name: string
+          group_number: number
+          id: string
+          pathway_code: string
+          sort_order: number
+        }
+        Insert: {
+          framework_version: string
+          group_description: string
+          group_name: string
+          group_number: number
+          id?: string
+          pathway_code: string
+          sort_order?: number
+        }
+        Update: {
+          framework_version?: string
+          group_description?: string
+          group_name?: string
+          group_number?: number
+          id?: string
+          pathway_code?: string
+          sort_order?: number
+        }
+        Relationships: []
+      }
+      compass_pathway: {
+        Row: {
+          framework_version: string
+          id: string
+          pathway_code: string
+          pathway_name: string
+          sort_order: number
+          summary: string
+        }
+        Insert: {
+          framework_version: string
+          id?: string
+          pathway_code: string
+          pathway_name: string
+          sort_order?: number
+          summary: string
+        }
+        Update: {
+          framework_version?: string
+          id?: string
+          pathway_code?: string
+          pathway_name?: string
+          sort_order?: number
+          summary?: string
+        }
+        Relationships: []
+      }
+      compass_skill_marker: {
+        Row: {
+          age_band: number
+          framework_version: string
+          full_code: string
+          group_number: number
+          id: string
+          marker_number: number
+          milestone_group_id: string | null
+          pathway_code: string
+          search_vector: unknown
+          skill_text: string
+        }
+        Insert: {
+          age_band: number
+          framework_version: string
+          full_code: string
+          group_number: number
+          id?: string
+          marker_number: number
+          milestone_group_id?: string | null
+          pathway_code: string
+          search_vector?: unknown
+          skill_text: string
+        }
+        Update: {
+          age_band?: number
+          framework_version?: string
+          full_code?: string
+          group_number?: number
+          id?: string
+          marker_number?: number
+          milestone_group_id?: string | null
+          pathway_code?: string
+          search_vector?: unknown
+          skill_text?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "compass_skill_marker_milestone_group_id_fkey"
+            columns: ["milestone_group_id"]
+            isOneToOne: false
+            referencedRelation: "compass_milestone_group"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       enrollment: {
         Row: {
           center_id: string
