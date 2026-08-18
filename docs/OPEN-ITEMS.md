@@ -156,3 +156,15 @@ Who writes them, and what does it cost?
   per child; whether to market "everything organized for an inspection" as
   a headline feature is a positioning question, not an engineering one.
   Same section of `docs/FRAMEWORK.md` for sources.
+- **Quick Swap** — mid-day activity substitution, not just week-ahead
+  planning. Bernard-provided research (`docs/FRAMEWORK.md` §"What we added
+  beyond parity" item 5) names "a lesson plan rarely survives contact with
+  the classroom" as a real daily problem; swapping in another activity
+  tagged to the same Skill Marker would fix a plan on the fly without
+  losing the coverage story. Depends on the lesson-plan builder existing
+  first. Not scoped.
+- **Play-vs-academic-pressure as a positioning line.** Same research note:
+  teachers face real pressure to run worksheet-style lessons younger than
+  developmentally appropriate. The Compass gives a play-based activity a
+  concrete skill to point to instead — worth testing as marketing copy, not
+  an engineering task. Same section of `docs/FRAMEWORK.md`.

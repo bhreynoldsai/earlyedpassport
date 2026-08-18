@@ -126,11 +126,12 @@ Motion**.
 
 ## What we added beyond parity
 
-The brief was "even add more" — four real product ideas came out of
-writing this content, in addition to the sixth Pathway above. The last two
-came from a round of research into what child care teachers and directors
-actually struggle with day to day (sources at the bottom of this section),
-not just from writing the content itself.
+The brief was "even add more" — five real product ideas came out of
+writing this content, in addition to the sixth Pathway above. Items 1–3
+came directly out of writing the framework itself. Item 4 came from a round
+of web research into what child care teachers and directors actually
+struggle with day to day (sources below it). Item 5 came from a second
+research note Bernard passed along directly.
 
 1. **Richer activities than any state library offers.** DECAL's activity
    library (`docs/reference/gelds-activity-library.md`) has a title, an age
@@ -193,6 +194,42 @@ not just from writing the content itself.
    [ChildPilot, Childcare Staffing Challenges](https://childpilot.com/blog/childcare-staffing-challenges/) ·
    [1Core Solution, Childcare Compliance Management](https://1coresolution.com/blog/how-childcare-centers-can-manage-compliance) ·
    [Edutopia, Have Teachers Reached App Overload?](https://www.edutopia.org/article/technology-integration/)
+
+5. **Quick Swap, not just a plan.** Bernard passed along a second research
+   note (`child_care_lesson_plan_challenges.md`) that names something the
+   first round didn't: "a meticulously designed lesson plan rarely survives
+   contact with the classroom" — kids are overstimulated, tired, or just not
+   into it, and a teacher has to improvise on the spot. A plan built once a
+   week and printed doesn't help at 10am when it's already not working.
+   Because every activity is tagged to a Skill Marker rather than living in
+   isolation, the natural feature is a **swap**: at any point in the day, pull
+   up other activities tagged to the same Skill Marker or Pathway and
+   substitute one in — the coverage story stays accurate without re-planning
+   anything. Not built, needs the lesson-plan builder first, same as items
+   2–4.
+
+   **Two things this same note validates rather than adds:** the
+   "One-Size-Fits-None" problem (children at wildly different developmental
+   points in one room) is already why every Compass activity is written with
+   the `differentiation` / `forMoreSupport` / `forMoreChallenge` fields
+   already in `lib/copy.ts`'s `activity` section, and why age bands are
+   ranges an activity can span rather than a single value — see "Sink or
+   Float Lab" (36–60 months) in `docs/reference/compass-starter-activities.md`.
+   And "Resource and Supply Gaps" (teachers buying craft supplies out of
+   pocket) is why every content-drafting brief for this framework explicitly
+   asked for materials that are cheap and already sitting in a classroom —
+   worth keeping as a hard rule for whoever writes the next 280 activities,
+   not just a nice-to-have.
+
+   **One tension worth naming, not solving here:** the same note describes
+   real pressure on teachers to introduce academic, worksheet-style content
+   younger than developmental best practice recommends. The Compass is built
+   entirely around play-based, observable skills — which means a teacher
+   using it has something concrete to point to ("here's the sorting and
+   counting skill this activity actually covers") when defending play-based
+   practice against that pressure, without needing to add a worksheet to
+   prove it. Worth considering as a positioning line, not an engineering
+   task.
 
 ## What's still ahead (see docs/OPEN-ITEMS.md)
 
