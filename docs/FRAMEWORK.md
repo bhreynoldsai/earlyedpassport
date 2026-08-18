@@ -196,8 +196,9 @@ research note Bernard passed along directly.
    [Edutopia, Have Teachers Reached App Overload?](https://www.edutopia.org/article/technology-integration/)
 
 5. **Quick Swap, not just a plan.** Bernard passed along a second research
-   note (`child_care_lesson_plan_challenges.md`) that names something the
-   first round didn't: "a meticulously designed lesson plan rarely survives
+   note ([`docs/reference/child_care_lesson_plan_challenges.md`](reference/child_care_lesson_plan_challenges.md))
+   that names something the first round didn't: "a meticulously designed
+   lesson plan rarely survives
    contact with the classroom" — kids are overstimulated, tired, or just not
    into it, and a teacher has to improvise on the spot. A plan built once a
    week and printed doesn't help at 10am when it's already not working.
