@@ -60,7 +60,26 @@ jobs:
         run: pnpm db:verify
 
       - name: Generated types match the migrations
-        run: pnpm db:types:check
+        # `supabase gen types typescript` pulls postgres-meta from a public
+        # registry on every run, uncached — on the shared runner pool that
+        # occasionally comes back "toomanyrequests: Rate exceeded", nothing to
+        # do with our schema or types. Retry with backoff rather than fail the
+        # build on a registry hiccup; a real drift between the migrations and
+        # the committed types fails the same way on every attempt, so this
+        # can't mask an actual bug.
+        run: |
+          for attempt in 1 2 3 4; do
+            if pnpm db:types:check; then
+              exit 0
+            fi
+            if [ "$attempt" -eq 4 ]; then
+              echo "::error::db:types:check failed after $attempt attempts."
+              exit 1
+            fi
+            wait=$((attempt * 20))
+            echo "::warning::db:types:check failed (attempt $attempt/4) — retrying in ${wait}s."
+            sleep "$wait"
+          done
 
       - name: Types
         run: pnpm typecheck
