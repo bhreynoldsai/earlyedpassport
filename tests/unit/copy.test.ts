@@ -58,16 +58,12 @@ describe('the save chip never reads as an error', () => {
   })
 })
 
-describe('plain-English domain names', () => {
-  it('gives all five domains a name a teacher would say out loud', () => {
-    expect(Object.keys(copy.indicators.domainPlain)).toEqual(['PDM', 'SED', 'APL', 'CLL', 'CD'])
-    for (const name of Object.values(copy.indicators.domainPlain)) {
+describe('plain-English pathway names', () => {
+  it('gives all six pathways a name a teacher would say out loud', () => {
+    expect(Object.keys(copy.indicators.pathwayPlain)).toEqual(['CM', 'GS', 'FW', 'BF', 'TD', 'WM'])
+    for (const name of Object.values(copy.indicators.pathwayPlain)) {
       expect(name).not.toMatch(/development|cognitive|approaches/i)
     }
-  })
-
-  it('gives all five CD subdomains a plain name', () => {
-    expect(Object.keys(copy.indicators.subdomainPlain)).toEqual(['MA', 'SC', 'SS', 'CR', 'CP'])
   })
 })
 

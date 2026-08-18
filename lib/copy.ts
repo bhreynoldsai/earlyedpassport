@@ -18,7 +18,7 @@
 export const copy = {
   product: {
     name: 'Early Ed Passport',
-    tagline: 'Weekly lesson plans with your five learning areas already tagged.',
+    tagline: 'Weekly lesson plans with your six learning areas already tagged.',
   },
 
   /** Required by spec. App footer AND every printed lesson plan. */
@@ -56,9 +56,9 @@ export const copy = {
     /** Coverage nudges. Amber, plain, never blocking. */
     coverageLine: (covered: number, total: number) =>
       `You have ${covered} of ${total} areas this week.`,
-    coverageAll: 'You have all five areas this week.',
+    coverageAll: 'You have all six areas this week.',
     addOne: 'Add one',
-    missingDomain: (domain: string) => `You still need something for ${domain}.`,
+    missingPathway: (pathway: string) => `You still need something for ${pathway}.`,
     emptyWeek: 'Nothing here yet. Start from last week so you are not looking at a blank page.',
     startFromLastWeek: 'Start from last week',
   },
@@ -87,21 +87,17 @@ export const copy = {
     showNearbyAges: 'Show nearby ages',
     tooMany: 'That is a lot for one activity — pick the 2 or 3 you will really watch for.',
     back: 'Back',
-    /** The five domains, in plain English a teacher would use out loud. */
-    domainPlain: {
-      PDM: 'Moving & Growing',
-      SED: 'Feelings & Friends',
-      APL: 'How They Learn',
-      CLL: 'Talking & Reading',
-      CD: 'Thinking & Learning',
-    },
-    /** CD only. Every other domain goes straight to its list. */
-    subdomainPlain: {
-      MA: 'Math',
-      SC: 'Science',
-      SS: 'Social Studies',
-      CR: 'Creative',
-      CP: 'Thinking Skills',
+    /** The six Pathways, in plain English a teacher would use out loud.
+     *  See docs/FRAMEWORK.md — no subdomain split anymore; Wonder & Make
+     *  used to be a Cognitive Development subdomain and now stands on its
+     *  own, same as every other Pathway. */
+    pathwayPlain: {
+      CM: 'Thinking & Figuring Out',
+      GS: 'Moving & Growing',
+      FW: 'Talking & Reading',
+      BF: 'Feelings & Friends',
+      TD: 'Trying & Sticking With It',
+      WM: 'Making & Pretending',
     },
   },
 
@@ -263,8 +259,8 @@ export const copy = {
 
   /** Screen-reader-only text. Color is never the only signal. */
   a11y: {
-    domainCovered: (name: string) => `${name} — you have this one this week`,
-    domainNotCovered: (name: string) => `${name} — nothing for this one yet`,
+    pathwayCovered: (name: string) => `${name} — you have this one this week`,
+    pathwayNotCovered: (name: string) => `${name} — nothing for this one yet`,
   },
 
   nav: {
