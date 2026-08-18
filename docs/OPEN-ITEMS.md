@@ -15,17 +15,16 @@ lands. No real child data in this repo, ever.
 
 ## Blocking launch
 
-### 1. DECAL written permission — `TODO(decal-permission)`
+### 1. DECAL written permission — `TODO(decal-permission)` — resolved by not needing it
 
-Written permission for commercial use and redistribution of GELDS standards
-text. Ask at the same time whether a machine-readable export exists, which would
-retire most of the import pipeline's fragility.
+Bernard, 2026-08-18: stop referencing DECAL/GELDS at all and build our own
+framework instead. See [`docs/FRAMEWORK.md`](FRAMEWORK.md) — the product no
+longer tags against GELDS standards text, so there is nothing left to need
+permission for. `lib/gelds/` and the import pipeline (`supabase/gelds/`)
+are inert, left in the repo for historical reference only; nothing calls
+them.
 
-Until this lands we may not ship. Attribution is already rendered in the app
-footer and is required on every printed plan (`copy.standards.attribution`), but
-attribution is not permission.
-
-**Status:** not started.
+**Status:** moot. Marker removed from `scripts/check-release-blockers.mjs`.
 
 ### 2. The IQ Guide for Planning Instruction
 
@@ -56,19 +55,15 @@ a failed review after the build is a rewrite.
 
 ## Blocking design sign-off
 
-### 4. The five DECAL domain colours — `TODO(gelds-colors)`
+### 4. The six Compass pathway colours — `TODO(gelds-colors)` — resolved
 
-Pull the exact hex values from the GELDS Quick Guide PDF:
-https://gelds.decal.ga.gov/pdf/documents/GELDS_Quick_View.pdf
+No longer waiting on DECAL's palette — see item 1. Six real, final colours
+are recorded as `--compass-cm`, `--compass-gs`, `--compass-fw`,
+`--compass-bf`, `--compass-td`, `--compass-wm` in `app/globals.css`. Chosen
+for contrast against each other at chip-border weight; every chip still
+carries its two-letter code, so nothing relies on colour alone.
 
-Record them as `--gelds-pdm`, `--gelds-sed`, `--gelds-apl`, `--gelds-cll`,
-`--gelds-cd` in `app/globals.css`. Teachers recognise these colours from their
-training posters, so inventing our own costs us recognition we get for free.
-
-All five CD subdomains share the single CD colour and are told apart by label,
-not hue.
-
-**Status:** placeholders shipped. Every domain chip is currently grey.
+**Status:** shipped. Marker removed from `scripts/check-release-blockers.mjs`.
 
 ---
 
@@ -98,19 +93,11 @@ which is why there is no form yet.
 
 ## Blocking Phase 1
 
-### 0. Which GELDS edition does the product teach? — **NEW, and it outranks the rest**
+### 0. Which GELDS edition does the product teach? — moot
 
-The 657 indicators we loaded are the **2013** edition. The live portal carries
-**679** — 71 we lack, 49 we hold that DECAL has retired. Verified against the
-portal directly, not just the supplied workbook.
-
-Worst case is phonological awareness: **3 indicators in what we loaded, 16 on
-the portal**, for a component Georgia Pre-K requires _daily_ and scores.
-
-A third edition (2026 Pre-K, CLL first, FY27 rollout) is already publishing.
-
-Full write-up and my recommendation: [`docs/GELDS-EDITIONS.md`](GELDS-EDITIONS.md).
-Needs your call before the indicator chooser is built on top of it.
+Superseded by item 1: the product doesn't teach a GELDS edition at all
+anymore. [`docs/GELDS-EDITIONS.md`](GELDS-EDITIONS.md) is kept for
+historical reference only.
 
 ---
 
@@ -126,11 +113,15 @@ See `docs/SPEC-REVIEW.md` §2.
 
 ### 9. The 300 seeded activities
 
-~60 per age band, each pre-tagged with GELDS indicators, written at 6th-grade
-reading level. This is the reason a center pays. It is a content budget and real
-early-childhood expertise, not an engineering task, and
-`PROJECT-INSTRUCTIONS.md` §4.5 says explicitly not to have an AI generate them
-unreviewed.
+~60 per age band, each pre-tagged with Compass Skill Markers (see
+[`docs/FRAMEWORK.md`](FRAMEWORK.md)), written at 6th-grade reading level.
+12 starter activities exist today (`docs/reference/compass-starter-activities.md`)
+— that proves the shape, not the volume. This is the reason a center pays.
+It is a content budget and real early-childhood expertise, not an
+engineering task, and `PROJECT-INSTRUCTIONS.md` §4.5 says explicitly not to
+have an AI generate them unreviewed for the real 300 — the 12 starter ones
+were AI-drafted and should be treated as a first pass a human reviews, not
+final copy.
 
 Who writes them, and what does it cost?
 
@@ -153,3 +144,15 @@ Who writes them, and what does it cost?
 - Three pilot centers for the Phase 1 exit gate.
 - Domain and trademark clearance for **Early Ed Passport**. `earlyedpassport.com`
   is registered; the name has not been trademark-checked.
+- **An "in the moment" behavior-support tool**, separate from lesson
+  planning — research turned up that 63% of teachers name classroom
+  behavior management as their #1 daily challenge, bigger than
+  documentation or planning time. Not scoped, not committed — see
+  `docs/FRAMEWORK.md` §"What we added beyond parity" item 4 for the idea
+  and sources. Needs a decision on whether it's worth a real ticket.
+- **Inspection-readiness as a stated selling point.** Directors report
+  losing hours before licensing visits hunting for paperwork scattered
+  across folders and systems. The product already tracks compliance forms
+  per child; whether to market "everything organized for an inspection" as
+  a headline feature is a positioning question, not an engineering one.
+  Same section of `docs/FRAMEWORK.md` for sources.

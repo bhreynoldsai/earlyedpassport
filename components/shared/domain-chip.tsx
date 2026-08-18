@@ -1,30 +1,29 @@
 import { cn } from '@/lib/utils'
 import { copy } from '@/lib/copy'
-import { DOMAIN_NAMES, type DomainCode } from '@/lib/gelds/constants'
+import { PATHWAY_NAMES, type PathwayCode } from '@/lib/framework/constants'
 
 /**
  * DomainChip — acronym + color + optional full name.
  * Grey when uncovered, colored when covered.
  *
  * Domain color is CONTAINED, never ambient: it appears on chips, the coverage
- * bar, the left rule of an activity card, and the chooser's domain tiles. It
+ * bar, the left rule of an activity card, and the chooser's pathway tiles. It
  * never colors a page background, a header, or a button.
  *
- * Never relies on colour alone — every chip carries its acronym. The CD chip
- * shows `CD`; it does not show the subdomain, because coverage counts five
- * domains and covering CD-MA covers CD.
+ * Never relies on colour alone — every chip carries its two-letter code.
  */
 
-const DOMAIN_VAR: Record<DomainCode, string> = {
-  PDM: 'var(--gelds-pdm)',
-  SED: 'var(--gelds-sed)',
-  APL: 'var(--gelds-apl)',
-  CLL: 'var(--gelds-cll)',
-  CD: 'var(--gelds-cd)',
+const PATHWAY_VAR: Record<PathwayCode, string> = {
+  CM: 'var(--compass-cm)',
+  GS: 'var(--compass-gs)',
+  FW: 'var(--compass-fw)',
+  BF: 'var(--compass-bf)',
+  TD: 'var(--compass-td)',
+  WM: 'var(--compass-wm)',
 }
 
 export interface DomainChipProps {
-  domain: DomainCode
+  domain: PathwayCode
   covered?: boolean
   showName?: boolean
   className?: string
@@ -36,7 +35,7 @@ export function DomainChip({
   showName = false,
   className,
 }: DomainChipProps) {
-  const swatch = covered ? DOMAIN_VAR[domain] : 'var(--gelds-uncovered)'
+  const swatch = covered ? PATHWAY_VAR[domain] : 'var(--compass-uncovered)'
 
   return (
     <span
@@ -45,21 +44,20 @@ export function DomainChip({
         covered ? 'border-border-strong' : 'border-border',
         className
       )}
-      // Colour is a 4px left rule with dark text on top, so a DECAL hue that
-      // fails 4.5:1 as text still passes as a boundary. We never alter DECAL's
-      // hue to make it pass.
+      // Colour is a 4px left rule with dark text on top, so it works as a
+      // boundary regardless of contrast as text.
       style={{ borderLeft: `4px solid ${swatch}` }}
     >
       <span className="text-[length:var(--text-small)] font-semibold tracking-wide">{domain}</span>
       {showName ? (
         <span className="text-[length:var(--text-small)] text-text-muted">
-          {copy.indicators.domainPlain[domain]}
+          {copy.indicators.pathwayPlain[domain]}
         </span>
       ) : null}
       <span className="sr-only">
         {covered
-          ? copy.a11y.domainCovered(DOMAIN_NAMES[domain])
-          : copy.a11y.domainNotCovered(DOMAIN_NAMES[domain])}
+          ? copy.a11y.pathwayCovered(PATHWAY_NAMES[domain])
+          : copy.a11y.pathwayNotCovered(PATHWAY_NAMES[domain])}
       </span>
     </span>
   )

@@ -17,16 +17,8 @@ const ROOT = new URL('..', import.meta.url).pathname
 
 const BLOCKERS = [
   {
-    marker: 'TODO(gelds-colors)',
-    why: 'The five DECAL domain colours are still placeholders. Pull the real hex values from the GELDS Quick Guide PDF. Teachers recognise the official colours from their training posters.',
-  },
-  {
     marker: 'TODO(pricing)',
     why: 'Every number on the pricing page is a placeholder. PROJECT-INSTRUCTIONS Part 0.2 is still blank.',
-  },
-  {
-    marker: 'TODO(decal-permission)',
-    why: "DECAL's written permission for commercial redistribution of GELDS standards text has not been confirmed.",
   },
   {
     marker: 'TODO(marketing-assets)',

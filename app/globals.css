@@ -40,27 +40,22 @@
   --critical: #b3261e;
   --critical-soft: #fdecea;
 
-  /* --- 2.4 GELDS domain colors ------------------------------------------- */
-  /* TODO(gelds-colors): PLACEHOLDERS. These five values are NOT the real DECAL
-     colors. They must be pulled from the GELDS Quick Guide PDF:
-     https://gelds.decal.ga.gov/pdf/documents/GELDS_Quick_View.pdf
-     Teachers recognize the official colors from their training posters, so
-     inventing our own actively costs us recognition.
+  /* --- 2.4 Compass pathway colors ----------------------------------------- */
+  /* Real, final values — not placeholders. These are our own framework
+     (docs/FRAMEWORK.md), so there is no state agency's official palette to
+     wait on or match; the old TODO(gelds-colors) blocker no longer applies.
+     Six pathways, six distinct hues, chosen for contrast against each other
+     at chip-border weight — chips never rely on color alone, every chip
+     still carries its two-letter code (components/shared/domain-chip.tsx). */
+  --compass-cm: #3e5c9a; /* Curious Mind */
+  --compass-gs: #3f7a4a; /* Growing Strong */
+  --compass-fw: #be6239; /* Finding Words */
+  --compass-bf: #a2436b; /* Big Feelings, Good Friends */
+  --compass-td: #8c7a2e; /* Trying & Doing */
+  --compass-wm: #2c7a82; /* Wonder & Make */
 
-     Bernard's open item #2 (DESIGN-BRIEF §9). Blocks final design sign-off.
-     `pnpm lint:release` fails the build if this marker survives to a release
-     tag (BUILD-INSTRUCTIONS T-0.7).
-
-     All five CD subdomains (MA, SC, SS, CR, CP) share the single CD color and
-     are differentiated by label, not hue. */
-  --gelds-pdm: #6b645a; /* TODO(gelds-colors) Physical Development & Motor Skills */
-  --gelds-sed: #6b645a; /* TODO(gelds-colors) Social & Emotional Development */
-  --gelds-apl: #6b645a; /* TODO(gelds-colors) Approaches to Play & Learning */
-  --gelds-cll: #6b645a; /* TODO(gelds-colors) Communication, Language & Literacy */
-  --gelds-cd: #6b645a; /* TODO(gelds-colors) Cognitive Development & General Knowledge */
-
-  /* Uncovered domain chips are grey until an activity covers them. */
-  --gelds-uncovered: #cfc8bc;
+  /* Uncovered pathway chips are grey until an activity covers them. */
+  --compass-uncovered: #cfc8bc;
 
   /* --- 2.5 Type ----------------------------------------------------------- */
   /* One family. No display face, no rounded "friendly" face — those read as
